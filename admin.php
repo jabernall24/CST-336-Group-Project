@@ -41,22 +41,83 @@ if (!isset($_SESSION['adminName'])) {
                     url: "api/getAllCars.php",
                     dataType: "json",
                     success: function(data,status) {
-                      data.forEach(function(car){
-                          $("#cars").append("<div class='row'>" + 
-                                                "<div class='col1'>" + 
-                                                "<a class=\"btn btn-primary\"  href='update.php?productId="+car.carId+"'> Update </a>" +
-                                                //"[<a href='delete.php?productId="+product.productId+"'> Delete </a>]" +
+                    /*  data.forEach(function(car){
+                          $("#cars").append("<div class='card' style='width: 18rem; margin: 50px;'>" + 
+                                                "<a target='productIframe' onclick='openModal()' href='productInfo.php?productId="+car.carId+"'> " + car.make + " " + car.model + "</a>"+
+                                                 "TYPE: " + car.type + "<br>" +"YEAR: "+ car.year + "<br>" + "COLOR: " + car.color + "<br>" + "MILES: " + car.odometer + "<br>" + "TRANSMISSION: " + car.transmission + "<br>" + "PRICE: $" +car.price + 
+                                                  "<br>" +
+                                                 "<a class=\"btn btn-primary\"  href='update.php?productId="+car.carId+"'> Update </a>" +
                                                 "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
                                                 "<input type='hidden' name='productId' value='"+ car.carId + "'>" +
                                                 "<button class=\"btn btn-outline-danger\">Delete</button></form>" +
-                                                "<a target='productIframe' onclick='openModal()' href='productInfo.php?productId="+car.carId+"'> " + car.make + " " + car.model + "</a></div>"+
-                                                "<div class='col2'>" + "TYPE: " + car.type + "  " +"YEAR: "+ car.year + "  " + "COLOR: " + car.color + "  " + "MILES: " + car.odometer + "  " + "TRANSMISSION: " + car.transmission + "  " + "PRICE: $" +car.price + "</div>"+
-                                                "</div><br>");
+                                                 "</div>"+
+                                                "</div>" +
+                                                "<br>");
                       })
                     },
                     complete: function(data,status) { //optional, used for debugging purposes
                     //alert(status);
 
+                */
+                
+                
+                
+                let htmlString = "";
+                 let i = 0;
+                $("#images").html("");
+                for (let rows=0; rows < data.length; rows++) {
+
+                    htmlString += "<div class='row'>";
+                    
+                    for (let cols=0; cols < 3; cols++) {
+                        if(data[i] !=null){
+                            
+                            
+                    carType =  data[i]["type"];        
+                    carMake =  data[i]["make"];
+                    carModel =  data[i]["model"];                    
+                    carYear =  data[i]["year"];
+                    carColor =  data[i]["color"];
+                    carTransmission =  data[i]["transmission"];
+                    carOdometer =  data[i]["odometer"];
+                    carPrice =  data[i]["price"];
+                    carImage =  data[i]["image"];
+
+                      htmlString += "<div class='col card' >";
+
+                     htmlString +=   "<div> " + "Type: " + carType+ "</div>";
+                     htmlString +=   "<div> " + "Make: " + carMake+ "</div>";
+                     htmlString +=   "<div> " + "Model: " + carModel+ "</div>";
+                     htmlString +=   "<div> " + "Year: " + carYear+ "</div>";
+                     htmlString +=   "<div> " + "color: " + carColor+ "</div>";
+                     htmlString +=   "<div> " + "Transmission: " + carTransmission+ "</div>";
+                     htmlString +=   "<div> " + "Odometer: " + carOdometer+ "</div>";
+                     htmlString +=   "<div> " + "Price: $" + carPrice+ "</div>";
+                     htmlString +=  "<img src='"+ carImage+"' width='300' height='280'>";
+
+                     
+                     htmlString += "<br><a class=\"btn btn-outline-primary\"  href='update.php?carId="+data[i]['carId']+"'> Update </a>" +
+                                                "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
+                                                "<input type='hidden' name='carId' value='"+ data[i]['carId'] + "'>" +
+                                                "<button class=\"btn btn-outline-danger\">Delete</button></form>" ;
+                     
+                      htmlString += "</div >";
+
+                        }
+                        
+                        
+                                                i++;
+
+                    }//for
+                    
+                    htmlString += "</div>";
+
+                }//for
+               
+               $("#cars").append(htmlString);
+               
+               
+               
                     }
                     
                 });//ajax
@@ -98,6 +159,9 @@ if (!isset($_SESSION['adminName'])) {
         
     <br><hr><br>
     
+    
+
+
     <form action="addCars.php">
         <button>Add New Product</button>
     </form>
