@@ -67,9 +67,9 @@ if (!isset($_SESSION['adminName'])) {
                 $("#images").html("");
                 for (let rows=0; rows < data.length; rows++) {
 
-                    htmlString += "<div class='row'>";
+                    htmlString += "<div class='row'style='margin-bottom: 100px;' >";
                     
-                    for (let cols=0; cols < 3; cols++) {
+                    for (let cols=0; cols < 5; cols++) {
                         if(data[i] !=null){
                             
                             
