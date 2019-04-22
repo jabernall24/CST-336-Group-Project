@@ -20,7 +20,8 @@ if (!isset($_SESSION['adminName'])) {
     <head>
         <title> Cars </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        
+                <link href="css/admin.css" rel="stylesheet" type="text/css" />
+
         <script>
         
             function confirmDelete(){
@@ -73,9 +74,9 @@ if (!isset($_SESSION['adminName'])) {
                         if(data[i] !=null){
                             
                             
-                    carType =  data[i]["type"];        
                     carMake =  data[i]["make"];
-                    carModel =  data[i]["model"];                    
+                    carModel =  data[i]["model"];  
+                    carType =  data[i]["type"];        
                     carYear =  data[i]["year"];
                     carColor =  data[i]["color"];
                     carTransmission =  data[i]["transmission"];
@@ -85,6 +86,12 @@ if (!isset($_SESSION['adminName'])) {
 
                       htmlString += "<div class='col card' >";
 
+                     htmlString += "<br><a class=\"btn btn-outline-primary\"  href='update.php?carId="+data[i]['carId']+"'> Update </a>" +
+                                                "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
+                                                "<input type='hidden' name='carId' value='"+ data[i]['carId'] + "'>" +
+                                                "<button class=\"btn btn-outline-danger\">Delete</button></form>" ;
+                     
+                     
                      htmlString +=   "<div> " + "Type: " + carType+ "</div>";
                      htmlString +=   "<div> " + "Make: " + carMake+ "</div>";
                      htmlString +=   "<div> " + "Model: " + carModel+ "</div>";
@@ -93,14 +100,10 @@ if (!isset($_SESSION['adminName'])) {
                      htmlString +=   "<div> " + "Transmission: " + carTransmission+ "</div>";
                      htmlString +=   "<div> " + "Odometer: " + carOdometer+ "</div>";
                      htmlString +=   "<div> " + "Price: $" + carPrice+ "</div>";
-                     htmlString +=  "<img src='"+ carImage+"' width='300' height='280'>";
+                     htmlString +=  "<img class='rounded mx-auto d-block' src='"+ carImage+"' width='300' >";
 
                      
-                     htmlString += "<br><a class=\"btn btn-outline-primary\"  href='update.php?carId="+data[i]['carId']+"'> Update </a>" +
-                                                "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
-                                                "<input type='hidden' name='carId' value='"+ data[i]['carId'] + "'>" +
-                                                "<button class=\"btn btn-outline-danger\">Delete</button></form>" ;
-                     
+
                       htmlString += "</div >";
 
                         }
@@ -153,23 +156,31 @@ if (!isset($_SESSION['adminName'])) {
     </head>
     <body>
 
-        <h1> Cars - Admin Page </h1>
+    <br>
 
-        Welcome <?=$_SESSION['adminName']?>
+
+    <br>
+        <h1 class="text-center"> Cars - Admin Page </h1>
+
+
+
+        <h4 class="text-center"> Welcome <?=$_SESSION['adminName']?>  <br>  <br>   <form action="logout.php">
+        <button class ="btn btn-danger text-center">Logout</button>
+    </form></h4>
+
         
+        
+            <br>
+
     <br><hr><br>
     
     
 
 
     <form action="addCars.php">
-        <button>Add New Product</button>
+        <button class ="btn btn-outline-primary">Add New Product</button>
     </form>
-    
-    <form action="logout.php">
-        <button>Logout</button>
-    </form>
-    
+
     <br><br>
     
      <div id="cars"></div>
