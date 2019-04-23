@@ -15,63 +15,133 @@ if (!isset($_SESSION['adminName'])) {
     <head>
         <title> </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     </head>
     <body>
         
-        <h1>Add new product</h1>
-        Type:<input type="text" id = "carType" size="50">
-        <br>        
-        Make:<input type="text" id = "carMake" size="50">
-        <br>
-        Model:<input type="text" id = "carModel" size="50">
-        <br>        
-        Year:<input type="text" id = "carYear" size="50">
-        <br>        
-        Color:<input type="text" id = "carColor" size="50">
-        <br>
-        Transmission:<input type="text" id = "carTransmission" size="50">
-        <br>
-        Image:<input type = "text" id = "carImage">
-        <br/>
-        Price: <input type="text" id="carPrice">
-        <br/>
+        
+        
+        
+        <div class="jumbotron">
+    <h1 class="display-4">Add New Car</h1>
+    <br>
+    <br>
 
-        <button id="submitButton">Add Car</button>
-        Button does not work yet
-        <span id="totalProducts"></span>
+
+    <form>
+        <h4 class="display-8">Car Information</h4>
+
+
+
+
+      <div class="form-group">
+        <label for="make">Make</label>
+        <input type="text" class="form-control" id="make" >
+      </div>
+
+      <div class="form-group">
+        <label for="model">Model</label>
+        <input type="text" class="form-control" id="model">
+      </div>
+
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="text" class="form-control" id="year">
+      </div>
+
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input type="text" class="form-control" id="color">
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" class="form-control" id="type">
+      </div>
+
+
+      <div class="form-group">
+        <label for="odometer">Odometer</label>
+        <input type="text" class="form-control" id="odometer">
+      </div>
+      
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" class="form-control" id="price">
+      </div>
+      
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="text" class="form-control" id="image">
+      </div>
+
+        Transmission
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="transmission" id="transmission" value="option1" checked>
+          <label class="form-check-label" for="autoRadio">
+            Automatic
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="transmission" id="transmission" value="option2">
+          <label class="form-check-label" for="manualRadio">
+            Manual
+          </label>
+        </div>
+        <br>
+        
+
+        <button  id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+        
+        </div>
     </body>
     
     <script>
-    /*
-        $.ajax({
-                    type: "GET",
-                    url: "api/getCategories.php",
-                    dataType: "json",
-                    success: function(data, status) {
-                        data.forEach(function(key) {
-                            $("#catId").append("<option value=" + key["catId"] + ">" + key["catName"] + "</option>");
-                        });
-                    }
-                }); 
+    
                 
         $("#submitButton").on("click", function(){
-                   //alert("test");
+            
+           let transmissionSelected;
+
+            if($("input[name=transmission]:checked").val() == "option1"){
+                transmissionSelected = "Automatic"
+            }
+             else if($("input[name=transmission]:checked").val() == "option2"){
+                transmissionSelected = "Automatic"
+            }
+            else
+            {
+             transmissionSelected = ""
+  
+            }
+            
+            
                    $.ajax({
                     type: "GET",
-                    url: "api/addProductAPI.php",
+                    url: "api/addCarAPI.php",
                     dataType: "json",
-                    data : {"productName": $("#productName").val(),
-                        "productDescription": $("#productDescription").val(),
-                        "productImage": $("#productImage").val(),
-                        "productPrice": $("#productPrice").val(),
-                        "catId": $("#catId").val()
+                    data : {"make": $("#make").val(),
+                        "model": $("#model").val(),
+                        "year": $("#year").val(),
+                        "color": $("#color").val(),
+                        "type": $("#type").val(),
+                        "transmission": transmissionSelected,
+                        "odometer": $("#odometer").val(),
+                        "price": $("#price").val(),
+                        "image": $("#image").val()
                         
                     },
                     success: function(data, status) {
-                        $("#totalProducts").html(data.totalproducts + " Products");
-                    }
+
+                    alert("There are " + data.totalCars + " Cars in the system.");
+
+                            }
                 }); 
         });
-        */
+        
     </script>
 </html>

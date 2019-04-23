@@ -42,24 +42,7 @@ if (!isset($_SESSION['adminName'])) {
                     url: "api/getAllCars.php",
                     dataType: "json",
                     success: function(data,status) {
-                    /*  data.forEach(function(car){
-                          $("#cars").append("<div class='card' style='width: 18rem; margin: 50px;'>" + 
-                                                "<a target='productIframe' onclick='openModal()' href='productInfo.php?productId="+car.carId+"'> " + car.make + " " + car.model + "</a>"+
-                                                 "TYPE: " + car.type + "<br>" +"YEAR: "+ car.year + "<br>" + "COLOR: " + car.color + "<br>" + "MILES: " + car.odometer + "<br>" + "TRANSMISSION: " + car.transmission + "<br>" + "PRICE: $" +car.price + 
-                                                  "<br>" +
-                                                 "<a class=\"btn btn-primary\"  href='update.php?productId="+car.carId+"'> Update </a>" +
-                                                "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
-                                                "<input type='hidden' name='productId' value='"+ car.carId + "'>" +
-                                                "<button class=\"btn btn-outline-danger\">Delete</button></form>" +
-                                                 "</div>"+
-                                                "</div>" +
-                                                "<br>");
-                      })
-                    },
-                    complete: function(data,status) { //optional, used for debugging purposes
-                    //alert(status);
-
-                */
+        
                 
                 
                 
@@ -159,7 +142,8 @@ if (!isset($_SESSION['adminName'])) {
     <br>
 
 
-    <br>
+            <div class="jumbotron">
+
         <h1 class="text-center"> Cars - Admin Page </h1>
 
 
@@ -178,7 +162,7 @@ if (!isset($_SESSION['adminName'])) {
 
 
     <form action="addCars.php">
-        <button class ="btn btn-outline-primary">Add New Product</button>
+        <button class ="btn btn-primary">Add New Car</button>
     </form>
 
     <br><br>
@@ -186,6 +170,6 @@ if (!isset($_SESSION['adminName'])) {
      <div id="cars"></div>
      
      
-
+</div>
     </body>
 </html>
