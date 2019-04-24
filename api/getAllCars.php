@@ -1,7 +1,7 @@
 <?php
 
     include '../dbConnection.php';
-    $conn = getDatabaseConnection("group_project");
+    $conn = getDatabaseConnection("ottermart");
     
     $sql = "SELECT * FROM cars ORDER BY carId";
     
