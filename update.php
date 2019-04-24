@@ -117,8 +117,18 @@
         
     </head>
     <body>
-     <div class="jumbotron">
-    <h1 class="display-4">Update Car</h1>
+        
+       <br>
+        <div class="row ">
+          
+         <div class="col">
+           </div>
+
+
+
+    
+        <div class="jumbotron col-8">
+    <h1 class="display-4 text-center">Update Car</h1>
     <br>
     <br>
 
@@ -189,14 +199,15 @@
         <button  id="submitButton" type="submit" class="btn btn-primary">Submit</button>
       </form>
 
-    <span id="updated"></span>
-
+  </div>
         
-        </div>
-    
-    
-    
-    
+        
+                 <div class="col">
+           </div>
+           
+           
+   </div>
+
     
     
     

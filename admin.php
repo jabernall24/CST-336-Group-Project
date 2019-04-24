@@ -26,13 +26,15 @@ if (!isset($_SESSION['adminName'])) {
         
             function confirmDelete(){
                 
-                return confirm("Are you sure you want to delete this product?");
+                return confirm("Are you sure you want to delete this car?");
                 
             }
             
-            function openModal(){
+            
+            /*function openModal(){
                 $('#productModal').modal("show"); //opens the modal
             }
+            */
             
             $(document).ready(function(){
 
@@ -50,9 +52,10 @@ if (!isset($_SESSION['adminName'])) {
                  let i = 0;
                 $("#images").html("");
                 for (let rows=0; rows < data.length; rows++) {
-
+                   if(data[i] !=null){
                     htmlString += "<div class='row'style='margin-bottom: 100px;' >";
-                    
+                   }
+
                     for (let cols=0; cols < 5; cols++) {
                         if(data[i] !=null){
                             
@@ -83,16 +86,14 @@ if (!isset($_SESSION['adminName'])) {
                      htmlString +=   "<div> " + "Transmission: " + carTransmission+ "</div>";
                      htmlString +=   "<div> " + "Odometer: " + carOdometer+ "</div>";
                      htmlString +=   "<div> " + "Price: $" + carPrice+ "</div>";
-                     htmlString +=  "<img class='rounded mx-auto d-block' src='"+ carImage+"' width='300' >";
+                     htmlString +=  "<img class='rounded mx-auto d-block' src='"+ carImage+"' width='100%' >";
 
                      
 
                       htmlString += "</div >";
 
                         }
-                        
-                        
-                                                i++;
+                         i++;
 
                     }//for
                     
@@ -103,7 +104,7 @@ if (!isset($_SESSION['adminName'])) {
                $("#cars").append(htmlString);
                
                
-               
+                
                     }
                     
                 });//ajax
@@ -119,61 +120,51 @@ if (!isset($_SESSION['adminName'])) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      
 
-        <style>
-        
-            .row  { display:flex; }
-        
-            .col1 { width:350px; }
-            
-            form { display: inline-block; }
-            
-            #products {
-                 margin: 35px;
-            }
-
-        </style>   
-        
         
          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
     </head>
     <body>
 
-    <br>
+
+         <div class="jumbotron text-center">
 
 
-            <div class="jumbotron">
-
+        <form action="logout.php">
+        <button class ="btn btn-danger text-center">Logout</button>
+    </form>
         <h1 class="text-center"> Cars - Admin Page </h1>
 
 
 
-        <h4 class="text-center"> Welcome <?=$_SESSION['adminName']?>  <br>  <br>   <form action="logout.php">
-        <button class ="btn btn-danger text-center">Logout</button>
-    </form></h4>
+        <h4 class="text-center"> Welcome <?=$_SESSION['adminName']?>  <br>  <br>   
+</h4>
 
         </div>
 
         
             <br>
 
-    <br><hr><br>
     
     
+         <div class=" text-center">
 
-<divclass"tex-center">
-    
-        <form action="addCars.php">
+
+        <form action="addCars.php" class="text-center">
         <button class ="btn btn-primary text-center">Add New Car</button>
-    </form>
+        </form>
     
 </div>
 
-
     <br><br>
     
-     <div id="cars"></div>
+                 <div class= "row">
+
+         <div class= "col"></div>
+
+     <div class= "col-11" id="cars"></div>
      
-     
+              <div class= "col"></div>
+            </div>
     </body>
 </html>

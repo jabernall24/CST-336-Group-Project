@@ -21,10 +21,17 @@ if (!isset($_SESSION['adminName'])) {
     <body>
         
         
-        
-        
-        <div class="jumbotron">
-    <h1 class="display-4">Add New Car</h1>
+        <br>
+        <div class="row ">
+          
+         <div class="col">
+           </div>
+
+
+
+    
+        <div class="jumbotron col-8">
+    <h1 class="display-4 text-center">Add New Car</h1>
     <br>
     <br>
 
@@ -98,6 +105,14 @@ if (!isset($_SESSION['adminName'])) {
 
         
         </div>
+        
+        
+                 <div class="col">
+           </div>
+           
+           
+   </div>
+
     </body>
     
     <script>
