@@ -18,8 +18,7 @@
     </head>
     
     <body>
-<<<<<<< HEAD
-        
+
         
         <br>
         <div class="row ">
@@ -34,12 +33,10 @@
     <h1 class="display-4 text-center">Add New Car</h1>
     <br>
     <br>
-=======
         <div class="jumbotron">
         <h1 class="display-4">Add New Car</h1>
         <br>
         <br>
->>>>>>> 194489b954dcac317f2da343acbdd7ab453316cf
 
 
     <form>
@@ -113,11 +110,15 @@
         </div>
         
         
-                 <div class="col">
-           </div>
-           
+
            
    </div>
+   
+   
+                    <div class="col">
+           </div>
+           
+   
 
     </body>
     
