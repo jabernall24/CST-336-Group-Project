@@ -1,0 +1,40 @@
+[24-Apr-2019 01:01:29 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ottermart.cars' doesn't exist' in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php:9
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
+[24-Apr-2019 03:55:15 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ottermart.cars' doesn't exist' in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php:9
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
+[24-Apr-2019 03:56:35 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: no parameters were bound' in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php:22
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php(22): PDOStatement->execute(NULL)
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php on line 22
+[24-Apr-2019 03:56:48 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ottermart.cars' doesn't exist' in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php:9
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
+[24-Apr-2019 03:57:39 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: no parameters were bound' in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php:22
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php(22): PDOStatement->execute(NULL)
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php on line 22
+[24-Apr-2019 03:57:42 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ottermart.cars' doesn't exist' in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php:9
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
+[24-Apr-2019 03:57:43 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/CST-336-Group-Project/api/getCarInfo.php:13
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getCarInfo.php(13): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getCarInfo.php on line 13
+[24-Apr-2019 03:57:45 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 13' in /home/ubuntu/workspace/CST-336-Group-Project/api/updateCarAPI.php:49
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/updateCarAPI.php(49): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/updateCarAPI.php on line 49
