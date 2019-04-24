@@ -70,7 +70,7 @@ if (!isset($_SESSION['adminName'])) {
                       htmlString += "<div class='col card' >";
 
                      htmlString += "<br><a class=\"btn btn-outline-primary\"  href='update.php?carId="+data[i]['carId']+"'> Update </a>" +
-                                                "<form action='delete.php' method='post' onsubmit='return confirmDelete()'>"+
+                                                "<form action='api/deleteCarAPI.php' method='post' onsubmit='return confirmDelete()'>"+
                                                 "<input type='hidden' name='carId' value='"+ data[i]['carId'] + "'>" +
                                                 "<button class=\"btn btn-outline-danger\">Delete</button></form>" ;
                      
@@ -161,10 +161,14 @@ if (!isset($_SESSION['adminName'])) {
     
     
 
-
-    <form action="addCars.php">
-        <button class ="btn btn-primary">Add New Car</button>
+<divclass"tex-center">
+    
+        <form action="addCars.php">
+        <button class ="btn btn-primary text-center">Add New Car</button>
     </form>
+    
+</div>
+
 
     <br><br>
     
