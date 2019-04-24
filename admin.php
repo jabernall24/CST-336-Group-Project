@@ -1,19 +1,12 @@
 <?php
-session_start();
 
-//checks whether user has logged in
-if (!isset($_SESSION['adminName'])) {
+    session_start();
     
-    header('location: login.php'); //sends users to login screen if they haven't logged in
-    
-}
-
+    //checks whether user has logged in
+    if (!isset($_SESSION['adminName'])) {
+        header('location: login.php'); //sends users to login screen if they haven't logged in
+    }
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html>

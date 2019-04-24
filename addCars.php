@@ -1,12 +1,10 @@
 <?php
-session_start();
-
-//checks whether user has logged in
-if (!isset($_SESSION['adminName'])) {
+    session_start();
     
-    header('location: login.html'); //sends users to login screen if they haven't logged in
-    
-}
+    //checks whether user has logged in
+    if (!isset($_SESSION['adminName'])) {
+        header('location: login.html'); //sends users to login screen if they haven't logged in
+    }
 
 ?>
 
@@ -15,10 +13,12 @@ if (!isset($_SESSION['adminName'])) {
     <head>
         <title> </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     </head>
+    
     <body>
+<<<<<<< HEAD
         
         
         <br>
@@ -34,6 +34,12 @@ if (!isset($_SESSION['adminName'])) {
     <h1 class="display-4 text-center">Add New Car</h1>
     <br>
     <br>
+=======
+        <div class="jumbotron">
+        <h1 class="display-4">Add New Car</h1>
+        <br>
+        <br>
+>>>>>>> 194489b954dcac317f2da343acbdd7ab453316cf
 
 
     <form>
