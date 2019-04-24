@@ -78,13 +78,13 @@ if (!isset($_SESSION['adminName'])) {
 
         Transmission
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="transmission" id="transmission" value="option1" checked>
+          <input class="form-check-input" type="radio" name="transmission" id="transmission1" value="option1">
           <label class="form-check-label" for="autoRadio">
             Automatic
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="transmission" id="transmission" value="option2">
+          <input class="form-check-input" type="radio" name="transmission" id="transmission2" value="option2">
           <label class="form-check-label" for="manualRadio">
             Manual
           </label>
@@ -102,24 +102,27 @@ if (!isset($_SESSION['adminName'])) {
     
     <script>
     
+    
+         $(document).ready(function(){  
+
                 
         $("#submitButton").on("click", function(){
             
-           let transmissionSelected;
+                       let transmission = "";
 
-            if($("input[name=transmission]:checked").val() == "option1"){
-                transmissionSelected = "Automatic"
-            }
-             else if($("input[name=transmission]:checked").val() == "option2"){
-                transmissionSelected = "Automatic"
-            }
-            else
-            {
-             transmissionSelected = ""
-  
-            }
-            
-            
+                    if($("#transmission1").is(":checked"))
+                {
+                    transmission = "Automatic";
+                }
+                else  if($("#transmission2").is(":checked"))
+
+                {
+
+                    transmission = "Manual";
+                }
+                
+                
+
                    $.ajax({
                     type: "GET",
                     url: "api/addCarAPI.php",
@@ -129,7 +132,7 @@ if (!isset($_SESSION['adminName'])) {
                         "year": $("#year").val(),
                         "color": $("#color").val(),
                         "type": $("#type").val(),
-                        "transmission": transmissionSelected,
+                        "transmission": transmission,
                         "odometer": $("#odometer").val(),
                         "price": $("#price").val(),
                         "image": $("#image").val()
@@ -142,6 +145,12 @@ if (!isset($_SESSION['adminName'])) {
                             }
                 }); 
         });
+        
+        
+
+
+                        });//documentReady
+
         
     </script>
 </html>

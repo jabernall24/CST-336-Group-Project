@@ -152,7 +152,8 @@ if (!isset($_SESSION['adminName'])) {
         <button class ="btn btn-danger text-center">Logout</button>
     </form></h4>
 
-        
+        </div>
+
         
             <br>
 
@@ -170,6 +171,5 @@ if (!isset($_SESSION['adminName'])) {
      <div id="cars"></div>
      
      
-</div>
     </body>
 </html>
