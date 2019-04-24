@@ -1,0 +1,58 @@
+input {
+    width: 50%;
+}
+
+#homePageHeader {
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#homePageContainer {
+    height: 100px;
+    position: relative;
+    background-color: #5184d6;
+}
+
+#featuredCarName {
+    text-align: left !important;
+    font-size: 36pt;
+}
+
+main {
+    display: flex;
+    justify-content: left;
+}
+
+#featuredCarImage {
+    max-width: 750px;
+    max-height: 750px;
+    width: auto;
+    height: auto;
+}
+
+#left {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    padding: 25px;
+}
+
+#right {
+    text-align: left;
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#search {
+    text-align: center;
+}

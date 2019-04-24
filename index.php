@@ -3,32 +3,44 @@
     <head>
         <title> Home </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        
-        <style>
-            body {
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/index.css" type="text/css" />
     </head>
     
     <body>
-        <h1>Car shop</h1>
+        <div id="homePageContainer">
+            <div id="homePageHeader">
+                <h1>WEBSITE NAME HERE</h1>
+            </div>
+        </div>
         
-        <input type="text" name="" id="carSearch" /> <br/>
+        <br/>
         
-        <img src="" alt="" id="featuredCar">
+        <div id="search">
+            <input type="text" name="" id="carSearch" />
+            <button type="button" class="btn btn-primary btn-sm">Search</button>
+        </div>
         
-        <script>
-             $.ajax({
-                type: "GET",
-                url: "api/getFeaturedCar.php",
-                dataType: "json",
-                success: function(data, status) {
-                    $("#featuredCar").attr('src', data.image);
-                }
-            });
-        </script>
+        <strong id="featuredCarName"></strong> <br/>
+        
+        <main>
+            <div id="left">
+                <img src="" alt="" id="featuredCarImage">
+            </div>
+            <div id="right">
+                <strong>Price: </strong><span id="featuredCarPrice"></span> <br/>
+                <strong>Mileage: </strong><span id="featuredCarMileage"></span> <br/>
+                <strong>Transmission: </strong><span id="featuredCarTransmission"></span> <br/>
+                <strong>Color: </strong><span id="featuredCarColor"></span> <br/>
+                
+                <a href="#" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+                </a>
+                
+            </div>
+        </main>
+        
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
