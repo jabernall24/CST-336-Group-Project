@@ -38,3 +38,8 @@ Stack trace:
 #0 /home/ubuntu/workspace/CST-336-Group-Project/api/updateCarAPI.php(49): PDOStatement->execute(Array)
 #1 {main}
   thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/updateCarAPI.php on line 49
+[24-Apr-2019 04:01:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ottermart.cars' doesn't exist' in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php:9
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
