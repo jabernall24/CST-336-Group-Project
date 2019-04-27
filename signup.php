@@ -27,15 +27,21 @@
                 <img src="img/logo.jpg"></img>
             </div>
             <div id="loginSignUp">
-                    <form method="POST" action="loginProcess.php">
-                        <h1>Login</h1>
+                    <form method="POST" action="signupProcess.php">
+                        <h1>Sign Up</h1>
+                        First Name: <br/>
+                        <input type="text" class="form-control form-rounded" name="first"> <br/>
+                        Last Name: <br/>
+                        <input type="text" class="form-control form-rounded" name="last"> <br/>
                         Username: <br/>
                         <input type="text" class="form-control form-rounded" name="username" id="username"> <br/>
                         Password: <br/>
                         <input type="password" class="form-control form-rounded" name="password" id="password"> <br/>
-    
-                        <button class="btn btn-outline-primary">Login</button>
-                        <button type="button" class="btn btn-outline-primary" id="signup">Sign up</button>
+                        <!--can't get it to work-->
+                        <!--Confirm Password: <br/>--> 
+                        <!--<input type="password" class="form-control form-rounded" name="confirm"> <br/>-->
+                        <button type="button" class="btn btn-outline-primary" id="login">Login</button>
+                        <button class="btn btn-outline-primary">Sign up</button>
                         <br>
                         <br>
                         <br>
@@ -45,8 +51,8 @@
         </main>
         
         <script>
-            $("#signup").on('click', function() {
-                window.location.href = "signup.php";
+            $("#login").on('click', function() {
+                window.location.href = "login.php";
             })
         </script>
 
