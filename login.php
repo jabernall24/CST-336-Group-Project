@@ -1,12 +1,5 @@
 <?php
     session_start();
-    
-    if ($_SESSION['valid'] === "false") {
-        echo('invalid login'); 
-        unset($_SESSION['valid']); //reset session variable so if user loads page, it does not show error unless they attemp login
-    }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +12,29 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
         <link rel="stylesheet" href="css/login.css" type="text/css" />
+        
+        <script>
+            var valid = <?=$_SESSION['valid']; unset($_SESSION['valid'])?>;
+        </script>
     </head>
     
     <body>
+        <nav class="navbar navbar-expand-lg">
+            <h1>WEBSITE NAME HERE</h1>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        
         <main>
             <div id="websiteImage">
                 <img src="img/logo.jpg"></img>
@@ -33,7 +46,8 @@
                         <input type="text" class="form-control form-rounded" name="username" id="username"> <br/>
                         Password: <br/>
                         <input type="password" class="form-control form-rounded" name="password" id="password"> <br/>
-    
+                        
+                        <span id="error"></span> <br/>
                         <button class="btn btn-outline-primary">Login</button>
                         <button type="button" class="btn btn-outline-primary" id="signup">Sign up</button>
                         <br>
@@ -44,11 +58,7 @@
             </div>
         </main>
         
-        <script>
-            $("#signup").on('click', function() {
-                window.location.href = "signup.php";
-            })
-        </script>
+        <script type="text/javascript" src="js/login.js"></script>
 
     </body>
 </html>

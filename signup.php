@@ -1,12 +1,5 @@
 <?php
     session_start();
-    
-    if ($_SESSION['valid'] === "false") {
-        echo('invalid login'); 
-        unset($_SESSION['valid']); //reset session variable so if user loads page, it does not show error unless they attemp login
-    }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +15,27 @@
     </head>
     
     <body>
+        <nav class="navbar navbar-expand-lg">
+            <h1>WEBSITE NAME HERE</h1>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
         <main>
             <div id="websiteImage">
                 <img src="img/logo.jpg"></img>
             </div>
             <div id="loginSignUp">
-                    <form method="POST" action="signupProcess.php">
+                    <form method="POST" action="signupProcess.php" id="form">
                         <h1>Sign Up</h1>
                         First Name: <br/>
                         <input type="text" class="form-control form-rounded" name="first"> <br/>
@@ -41,11 +49,10 @@
                         <!--Confirm Password: <br/>--> 
                         <!--<input type="password" class="form-control form-rounded" name="confirm"> <br/>-->
                         <button type="button" class="btn btn-outline-primary" id="login">Login</button>
-                        <button class="btn btn-outline-primary">Sign up</button>
+                        <button type="button" class="btn btn-outline-primary" id="signup">Sign up</button>
                         <br>
                         <br>
                         <br>
-                        *Test Note*    Login using an account under your om_admin database                
                     </form>
             </div>
         </main>
@@ -54,6 +61,35 @@
             $("#login").on('click', function() {
                 window.location.href = "login.php";
             })
+            
+            $("#signup").on('click', function() {
+                $("[name=first]").css('border-color', 'black');
+                $("[name=last]").css('border-color', 'black');
+                $("#username").css('border-color', 'black');
+                $("#password").css('border-color', 'black');
+                var error = false;
+                if($("[name=first]").val() == ""){
+                    error = true;
+                    $("[name=first]").css('border-color', 'red');
+                } 
+                if($("[name=last]").val() == ""){
+                    error = true;
+                    $("[name=last]").css('border-color', 'red');
+                } 
+                if($("#username").val() == ""){
+                    error = true;
+                    $("#username").css('border-color', 'red');
+                }  
+                if($("#password").val().length < 6) {
+                    error = true;
+                    $("#password").css('border-color', 'red');
+                }
+                
+                if(!error){
+                    $("#form").submit();
+                }
+            })
+            
         </script>
 
     </body>
