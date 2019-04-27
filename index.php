@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
+        <!--fontawesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
         <!--css-->
         <link rel="stylesheet" href="css/index.css" type="text/css" />
     </head>
@@ -30,7 +33,7 @@
         </nav>
         
         <form action="login.php">
-            <button id="logInBtn" class="btn btn-primary">Log in/Sign up</button>
+            <button id="logInBtn" class="btn btn-primary"><span class="fas fa-sign-in-alt"></span> Log in</button>
         </form>
         <br/>
         
@@ -52,7 +55,7 @@
                 <strong>Color: </strong><span id="featuredCarColor"></span> <br/>
                 
                 <button href="#" class="btn btn-info btn-lg">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+                    <span class="fas fa-shopping-cart"></span> Add to cart
                 </button>
                 
             </div>
