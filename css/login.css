@@ -1,0 +1,33 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#websiteImage {
+    width: 70%;
+    height: 100vh;
+}
+
+#loginSignUp {
+    text-align: center;
+}
+
+body {
+    background-color: #f4f8ff;
+}
+
+img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.form-rounded {
+    border-radius: 1rem;
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+}
+
+form {
+    padding: 30% 0;
+}

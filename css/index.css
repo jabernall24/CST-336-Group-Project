@@ -2,22 +2,6 @@ input {
     width: 50%;
 }
 
-#homePageHeader {
-    display: block;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-#homePageContainer {
-    height: 100px;
-    position: relative;
-    background-color: #5184d6;
-}
-
 #featuredCarName {
     text-align: left !important;
     font-size: 36pt;
@@ -50,9 +34,24 @@ main {
 }
 
 h1 {
-    text-align: center;
+    text-align: left;
 }
 
 #search {
     text-align: center;
+}
+
+#logInBtn {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.navbar-expand-lg {
+    width: 100%;
+    background-color: #5184d6;
+}
+
+.nav-link {
+    color: black;
 }
