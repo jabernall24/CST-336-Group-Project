@@ -10,10 +10,12 @@ main {
 #loginSignUp {
     text-align: center;
     width: 30%;
+    height: 90vh;
 }
 
 body {
     background-color: #f4f8ff;
+    overflow: hidden;
 }
 
 img {
