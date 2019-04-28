@@ -3,7 +3,7 @@
     session_start(); //starts or resumes an existing session
 
     include 'dbConnection.php';
-    $conn = getDatabaseConnection("ottermart");
+    $conn = getDatabaseConnection("group_project");
     
     $username = $_POST['username'];
     $firstName = $_POST['first'];
@@ -13,7 +13,7 @@
     $namedParameters = array();
     $namedParameters[":username"] = $username;
 
-    $sql = "SELECT COUNT(username) username FROM om_admin WHERE username = :username";
+    $sql = "SELECT COUNT(username) username FROM users WHERE username = :username";
     
     $stmt = $conn->prepare($sql);
     $stmt->execute($namedParameters);
@@ -23,8 +23,8 @@
         header('location: signup.php'); //redirecting to a new file
         $_SESSION['valid'] = "false";
     }else {
-        $sql = "INSERT INTO om_admin (firstName, lastName, username, password) 
-        VALUES (:firstName, :lastName, :username, :password);";
+        $sql = "INSERT INTO users (firstName, lastName, username, password, admin) 
+        VALUES (:firstName, :lastName, :username, :password, 0);";
         
         $namedParameters[":password"] = $password;
         $namedParameters[":firstName"] = $firstName;
@@ -34,22 +34,7 @@
         $stmt->execute($namedParameters);
 
         $_SESSION['valid'] = "true";
+        $_SESSION['user'] = $record['firstName'] . " " . $record['lastName'];
         header('location: index.php'); //redirecting to a new file
     }
-    
-    // print_r($record);
-    
-    // if (empty($record)) {
-    //     header('location: login.php'); //redirecting to a new file
-        
-    //     $_SESSION['valid'] = "false";
-    // }  else {
-    //     //echo $record[0]['firstName']; //using fetchAll
-    //     //echo $record['firstName'] . " " . $record['lastName'] ; //using fetch
-        // 
-        // $_SESSION['valid'] = "true";
-        
-        // $_SESSION['adminName'] = $record['firstName'] . " " . $record['lastName'];
-        // header('location: admin.php'); //redirecting to a new file
-    // }
 ?>

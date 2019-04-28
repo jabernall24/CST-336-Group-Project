@@ -43,3 +43,8 @@ Stack trace:
 #0 /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php(9): PDOStatement->execute()
 #1 {main}
   thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/getAllCars.php on line 9
+[28-Apr-2019 05:30:08 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: no parameters were bound' in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php:22
+Stack trace:
+#0 /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php(22): PDOStatement->execute(NULL)
+#1 {main}
+  thrown in /home/ubuntu/workspace/CST-336-Group-Project/api/addCarAPI.php on line 22

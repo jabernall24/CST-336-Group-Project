@@ -16,15 +16,21 @@
     
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1>WEBSITE NAME HERE</h1>
+            <h1 id="websiteName">WEBSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="addCars.php">Add Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="update.php">Update Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
                     </li>
                 </ul>
             </div>

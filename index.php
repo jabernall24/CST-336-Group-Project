@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,27 +17,43 @@
         
         <!--css-->
         <link rel="stylesheet" href="css/index.css" type="text/css" />
+        
+        <script>
+            var admin = false;
+            if (<?=isset($_SESSION['adminName'])?>) {
+                admin = true;
+            }
+        </script>
     </head>
     
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1>WEBSITE NAME HERE</h1>
+            <h1 id="websiteName">WEBSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="addCars.php">Add Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="update.php">Update Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
                     </li>
                 </ul>
             </div>
+            <form action="login.php">
+                <button id="logInBtn" class="btn btn-primary"><span class="fas fa-sign-in-alt"></span>Log in</button>
+            </form>
+            <form action="logout.php">
+                <button id="logoutBtn" class="btn btn-danger"><span class="fas fa-sign-in-alt"></span>Log out</button>
+            </form>
         </nav>
         
-        <form action="login.php">
-            <button id="logInBtn" class="btn btn-primary"><span class="fas fa-sign-in-alt"></span> Log in</button>
-        </form>
         <br/>
         
         <div id="search">

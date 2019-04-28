@@ -43,3 +43,11 @@ form {
 .nav-link {
     color: black;
 }
+
+.active {
+    background-color: white;
+}
+
+#websiteName {
+    padding-right: 50px;
+}

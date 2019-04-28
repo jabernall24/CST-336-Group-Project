@@ -12,3 +12,11 @@ $.ajax({
         $("#featuredCarColor").html(data.color);
     }
 });
+
+if(typeof(admin) !== "undefined") {
+    $("#logInBtn").hide();
+    $("#logoutBtn").show();
+}else{
+    $("#logInBtn").show();
+    $("#logoutBtn").hide();
+}
