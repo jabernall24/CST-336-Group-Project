@@ -1,0 +1,12 @@
+.carname{
+    font-size: 2em;
+}
+.cardetails{
+    font-size:1.2em;
+}
+.carpic,.cardetails,.carname{
+    display: inline-block;
+}
+.Text{
+    padding-left: 15px;
+}
