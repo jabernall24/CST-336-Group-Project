@@ -13,10 +13,10 @@ $.ajax({
     }
 });
 
-if(typeof(admin) !== "undefined") {
-    $("#logInBtn").hide();
-    $("#logoutBtn").show();
-}else{
-    $("#logInBtn").show();
-    $("#logoutBtn").hide();
-}
+// if(typeof(admin) !== "undefined" || typeof(user) !== "undefined") {
+//     $("#logInBtn").hide();
+//     $("#logoutBtn").show();
+// }else{
+//     $("#logInBtn").show();
+//     $("#logoutBtn").hide();
+// }

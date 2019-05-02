@@ -1,5 +1,6 @@
 <?php
     session_start();
+    print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,8 +21,12 @@
         
         <script>
             var admin = false;
+            var user = false;
             if (<?=isset($_SESSION['adminName'])?>) {
-                admin = true;
+                alert("Admin");
+            }
+            if (<?=isset($_SESSION['user'])?>) {
+                alert("User");
             }
         </script>
     </head>

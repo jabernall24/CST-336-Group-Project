@@ -3,7 +3,7 @@
     session_start(); //starts or resumes an existing session
 
     include 'dbConnection.php';
-    $conn = getDatabaseConnection("group_project");
+    $conn = getDatabaseConnection("ottermart");
     
     $username = $_POST['username'];
     $firstName = $_POST['first'];
