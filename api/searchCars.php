@@ -9,7 +9,7 @@ $namedParameters = array();
 $sql = "SELECT * FROM cars WHERE 1"; //Retrieves ALL records
 
 if (!empty($q)) { //user entered a product keyword
-    $sql .=  " AND make LIKE :search OR model LIKE :search";
+    $sql .=  " AND make LIKE :search OR model LIKE :search OR year LIKE :search";
     $namedParameters[":search"] = "%$q%";
 }
 

@@ -3,10 +3,23 @@
 }
 .cardetails{
     font-size:1.2em;
+    padding-right:10px;
+    padding-bottom:20px;
 }
 .carpic,.cardetails,.carname{
     display: inline-block;
 }
 .Text{
     padding-left: 15px;
+}
+.navbar-expand-lg {
+    width: 100%;
+    background-color: #5184d6;
+}
+.nav-link {
+    color: black;
+    padding-left: 20px;
+}
+div,#title{
+    padding-left: 10px;
 }
