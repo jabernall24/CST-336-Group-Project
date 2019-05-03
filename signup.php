@@ -23,15 +23,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="addCars.php">Add Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="update.php">Update Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin.php">Admin</a>
-                    </li>
                 </ul>
             </div>
         </nav>

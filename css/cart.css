@@ -1,0 +1,58 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.table-price {
+    text-align: center;
+    width: 125px;
+}
+
+.table-desc {
+    text-align: left;
+}
+
+.table-img {
+    width: 250px;
+    text-align: center;
+}
+
+.table-carName {
+    font-size: 32pt;
+}
+
+#websiteName {
+    padding-right: 50px;
+}
+
+#usersName {
+    padding-right: 20px;
+}
+
+.navbar-expand-lg {
+    width: 100%;
+    background-color: #5184d6;
+}
+
+.nav-link {
+    color: black;
+}
+
+#logInBtn {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}

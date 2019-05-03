@@ -10,13 +10,10 @@ $.ajax({
         $("#featuredCarMileage").html(data.odometer);
         $("#featuredCarTransmission").html(data.transmission);
         $("#featuredCarColor").html(data.color);
+        $("[name=carId]").val(data.carId);
     }
 });
 
-// if(typeof(admin) !== "undefined" || typeof(user) !== "undefined") {
-//     $("#logInBtn").hide();
-//     $("#logoutBtn").show();
-// }else{
-//     $("#logInBtn").show();
-//     $("#logoutBtn").hide();
-// }
+if($("[name=signedIn]").val() === "") {
+    $("#addToCartButton").attr('disabled', true);
+}

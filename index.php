@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    print_r($_SESSION);
+    include 'loadHeader.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,17 +17,6 @@
         
         <!--css-->
         <link rel="stylesheet" href="css/index.css" type="text/css" />
-        
-        <script>
-            var admin = false;
-            var user = false;
-            if (<?=isset($_SESSION['adminName'])?>) {
-                alert("Admin");
-            }
-            if (<?=isset($_SESSION['user'])?>) {
-                alert("User");
-            }
-        </script>
     </head>
     
     <body>
@@ -37,26 +25,13 @@
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="addCars.php">Add Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="update.php">Update Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin.php">Admin</a>
-                    </li>
+                    <?=isAdmin()?>
                 </ul>
             </div>
-            <form action="login.php">
-                <button id="logInBtn" class="btn btn-primary"><span class="fas fa-sign-in-alt"></span>Log in</button>
-            </form>
-            <form action="logout.php">
-                <button id="logoutBtn" class="btn btn-danger"><span class="fas fa-sign-in-alt"></span>Log out</button>
-            </form>
+            <?=displayNavButtons()?>
         </nav>
         
         <br/>
@@ -67,7 +42,7 @@
         </div>
         
         <strong id="featuredCarName"></strong> <br/>
-        
+        <input type="hidden" name="signedIn" value="<?=$_SESSION['username']?>"/>
         <main>
             <div id="left">
                 <img src="" alt="featured car image" id="featuredCarImage">
@@ -78,10 +53,13 @@
                 <strong>Transmission: </strong><span id="featuredCarTransmission"></span> <br/>
                 <strong>Color: </strong><span id="featuredCarColor"></span> <br/>
                 
-                <button href="#" class="btn btn-info btn-lg">
-                    <span class="fas fa-shopping-cart"></span> Add to cart
-                </button>
-                
+                <form action="addToCart.php" method="POST">
+                    <input type="hidden" name="sender" value="index.php"/>
+                    <input type="hidden" name="carId"/>
+                    <button id='addToCartButton' class="btn btn-info btn-lg">
+                        <span class="fas fa-shopping-cart"></span> Add to cart
+                    </button>
+                </form>
             </div>
         </main>
         

@@ -32,11 +32,13 @@
         $_SESSION['valid'] = "true";
         
         $_SESSION['adminName'] = $record['firstName'] . " " . $record['lastName'];
+        $_SESSION['username'] = $record['userId'];
         header('location: admin.php'); //redirecting to a new file
     }else {
         $_SESSION['valid'] = "true";
         
         $_SESSION['user'] = $record['firstName'] . " " . $record['lastName'];
+        $_SESSION['username'] = $record['userId'];
         header('location: index.php'); //redirecting to a new file
     }
 ?>

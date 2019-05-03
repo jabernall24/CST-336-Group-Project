@@ -56,10 +56,10 @@ h1 {
     color: black;
 }
 
-.active {
-    background-color: white;
-}
-
 #websiteName {
     padding-right: 50px;
+}
+
+#usersName {
+    padding-right: 20px;
 }

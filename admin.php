@@ -1,5 +1,5 @@
 <?php
-
+    include 'loadHeader.php';
     session_start();
     
     //checks whether user has logged in
@@ -110,8 +110,6 @@
                 });//ajax
                 
               
-
-
             });//documentReady
             
         </script>
@@ -133,20 +131,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="addCars.php">Add Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="update.php">Update Cars</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="admin.php">Admin</a>
-                    </li>
+                    <?=isAdmin()?>
                 </ul>
             </div>
-            <form action="logout.php">
-                <button id="logInBtn" class="btn btn-danger"><span class="fas fa-sign-in-alt"></span>Logout</button>
-            </form>
+            <?=displayNavButtons()?>
         </nav>
 
          <div class="jumbotron text-center">
