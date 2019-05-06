@@ -16,19 +16,35 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script>
     /* global $  */
+        
         getCarInfo();
         
         function cartAdd(id){
         // TODO: CART ADD... for now it'll just display the ID of the object being placed and toggle between remove and add.
         if($("#"+id).text().trim() == "Add to cart!"){
             /*** TODO: Make this add to cart ***/
+            if(0<?=$_SESSION['username']?> == 0){
+             alert("please sign in");   
+            }
+            else{
+            $.ajax({
+            type: "POST",
+            url: "addToCart.php",
+            dataType: "json",
+            data : {"carId":id,
+                    "username": 0<?=$_SESSION['username']?>
+            }
+            });
             $("#"+id).html("Remove from cart!")
+            }
         }
         else if($("#"+id).text().trim() == "Remove from cart!"){
             /*** TODO: Make this remove from cart ***/
             $("#"+id).html("Add to cart!")
         }
-            alert(id);
+        /*** for testing purposes ***/
+            //alert(id);
+            //alert(<?=$_SESSION['username']?>);
             
         }
         function getCarInfo() {    
