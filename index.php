@@ -37,13 +37,15 @@
             <?=displayNavButtons()?>
         </nav>
         
-        <br/>
         
+        
+        <img id = "banner" src="img/banner.jpg"></img><br>
+        <br>
         <div id="search">
-            <input type="text" name="" id="carSearch" />
+            <strong>Search:</strong> <input type="text" name="" id="carSearch" />
             <button type="button" class="btn btn-primary btn-sm">Search</button>
         </div>
-        
+        <strong id ="f">Featured Car</strong> <br>
         <strong id="featuredCarName"></strong> <br/>
         <input type="hidden" name="signedIn" value="<?=$_SESSION['username']?>"/>
         <main>
