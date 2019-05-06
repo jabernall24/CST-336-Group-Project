@@ -50,7 +50,6 @@
                         <br>
                         <br>
                         <br>
-                        *Test Note*    Login using an account under your om_admin database                
                     </form>
             </div>
         </main>
