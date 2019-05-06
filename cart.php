@@ -18,6 +18,18 @@
         return $record;
     }
 
+    function total(){
+        $conn = getDatabaseConnection("ottermart");
+        $userId = $_SESSION['username'];
+        
+        $sql = "SELECT SUM(cars.price) FROM cart INNER JOIN cars ON cart.carId = cars.carId WHERE userId = $userId";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        echo $record["SUM(cars.price)"];
+    }
     
     function some() {
         $data = makeCall();
@@ -75,6 +87,11 @@
                 <th>Price</th>
             </tr>
             <?=some()?>
+            <tr>
+                <th>Total: </th>
+                <th></th>
+                <th id = "tot"> $<?=total()?> </th>
+            </tr>
         </table>
     </body>
 </html>

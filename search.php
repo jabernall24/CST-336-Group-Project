@@ -20,11 +20,10 @@
         getCarInfo();
         
         function cartAdd(id){
-        // TODO: CART ADD... for now it'll just display the ID of the object being placed and toggle between remove and add.
         if($("#"+id).text().trim() == "Add to cart!"){
-            /*** TODO: Make this add to cart ***/
+            /*** Adds to cart and blanks button out ***/
             if(0<?=$_SESSION['username']?> == 0){
-             alert("please sign in");   
+             alert("Please sign in");   
             }
             else{
             $.ajax({
@@ -33,14 +32,14 @@
             dataType: "json",
             data : {"carId":id,
                     "username": 0<?=$_SESSION['username']?>
+            },
+            success: function(data, status) {
             }
             });
-            $("#"+id).html("Remove from cart!")
+            
+            $("#"+id).html("Added!")
+            document.getElementById(id).disabled = true;
             }
-        }
-        else if($("#"+id).text().trim() == "Remove from cart!"){
-            /*** TODO: Make this remove from cart ***/
-            $("#"+id).html("Add to cart!")
         }
         /*** for testing purposes ***/
             //alert(id);
