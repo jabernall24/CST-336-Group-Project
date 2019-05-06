@@ -8,21 +8,22 @@
         $conn = getDatabaseConnection("ottermart");
         
         $userId = $_SESSION['username'];
-       
-        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId WHERE cart.userId = $userId;";
+        
+        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
+        FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
         
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $record;
-    }
 
-    
-    function some() {
-        $data = makeCall();
-        foreach($data as $key => $val) {
-            echo "
+        $dups = array();
+        
+        foreach($record as $key => $val) {
+            
+            if(!in_array($val["carId"], $dups)) {
+                $dups[] = $val["carId"];
+                
+                echo "
                 <tr id='" . $val["carId"] . "'>
                 <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
                 <td class='table-desc'>
@@ -31,8 +32,11 @@
                 <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
                 <strong>Color: </strong> " . $val["color"] . " <br/>
                 </td>
+                <td>" . $val["total"] . "</td>
                 <td class='table-price' >$" . $val["price"] . "</td>
             </tr>";
+            }
+            
         }
     }
 ?>
@@ -72,9 +76,10 @@
             <tr>
                 <th>Image</th>
                 <th>Description</th>
+                <th>Total</th>
                 <th>Price</th>
             </tr>
-            <?=some()?>
+            <?=makeCall()?>
         </table>
     </body>
 </html>
