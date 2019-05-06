@@ -97,7 +97,7 @@
                 <th>Total: </th>
                 <th></th>
                 <th></th>
-                <th id = "tot"> $<?=total()?> </th>
+                <th> <span id = "tot">$<?=total()?> </span></th>
             </tr>
         </table>
     </body>

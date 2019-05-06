@@ -28,3 +28,9 @@ div,#title{
     float: right;
     margin-right: 25px;
 }
+#usersName {
+    padding-right: 20px;
+}
+#websiteName {
+    padding-right: 40px;
+}
