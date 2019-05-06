@@ -23,3 +23,8 @@
 div,#title{
     padding-left: 10px;
 }
+
+.buttons {
+    float: right;
+    margin-right: 25px;
+}
