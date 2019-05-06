@@ -4,12 +4,12 @@ input {
 
 #featuredCarName {
     text-align: left !important;
-    font-size: 36pt;
+    font-size: 24pt;
 }
 
 main {
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 
 #featuredCarImage {
@@ -62,4 +62,14 @@ h1 {
 
 #usersName {
     padding-right: 20px;
+}
+body{
+    text-align: center;
+}
+#f{
+    font-size: 36pt;
+}
+#banner{
+    height:15%;
+    width: 100%;
 }
