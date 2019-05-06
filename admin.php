@@ -124,12 +124,15 @@
     </head>
     <body>
                 <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">WEBSITE NAME HERE</h1>
+            <h1 id="websiteName">CARSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.php">Search</a>
                     </li>
                     <?=isAdmin()?>
                 </ul>

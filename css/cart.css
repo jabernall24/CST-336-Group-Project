@@ -56,3 +56,7 @@ tr:nth-child(even) {
     margin-top: 10px;
     margin-right: 10px;
 }
+#tot{
+    float:right;
+    padding-right: 10px;
+}
