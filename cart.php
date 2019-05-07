@@ -4,20 +4,6 @@
     include 'loadHeader.php';
     include 'dbConnection.php';
     
-    function makeCall() {
-        $conn = getDatabaseConnection("ottermart");
-        
-        $userId = $_SESSION['username'];
-       
-        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId WHERE cart.userId = $userId;";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $record;
-    }
-
     function total(){
         $conn = getDatabaseConnection("ottermart");
         $userId = $_SESSION['username'];
@@ -32,32 +18,41 @@
 
     }
     
-    function some() {
-        $data = makeCall();
-        foreach($data as $key => $val) {
+    function makeCall() {
+    $conn = getDatabaseConnection("ottermart");
+    
+    $userId = $_SESSION['username'];
+    
+    $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
+    FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $dups = array();
+    
+    foreach($record as $key => $val) {
+        
+        if(!in_array($val["carId"], $dups)) {
+            $dups[] = $val["carId"];
+            
             echo "
-                <tr id='" . $val["carId"] . "'>
-                <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
-                <td class='table-desc'>
-                <strong class='table-carName'>" . $val["year"] . " " . $val["make"] . " " . $val["model"] . "</strong> <br/><br/>
-                <strong>Mileage: </strong> " . $val["odometer"] . " <br/>
-                <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
-                <strong>Color: </strong> " . $val["color"] . " <br/>
-                </td>
-                <td class='table-price' >$" . $val["price"] . "</td>
-            </tr>";
+            <tr id='" . $val["carId"] . "'>
+            <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
+            <td class='table-desc'>
+            <strong class='table-carName'>" . $val["year"] . " " . $val["make"] . " " . $val["model"] . "</strong> <br/><br/>
+            <strong>Mileage: </strong> " . $val["odometer"] . " <br/>
+            <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
+            <strong>Color: </strong> " . $val["color"] . " <br/>
+            </td>
+            <td>" . $val["total"] . "</td>
+            <td class='table-price' >$" . $val["price"] . "</td>
+        </tr>";
         }
+        
     }
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
+    }
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,9 +90,10 @@
             <tr>
                 <th>Image</th>
                 <th>Description</th>
+                <th># of Cars</th>
                 <th>Price</th>
             </tr>
-            <?=some()?>
+            <?=makeCall()?>
              <tr>
                 <span><th>Coupon:  <span class="form-group">
         <input type="text" class="form-control" id="coupon">
@@ -108,6 +104,7 @@
             </tr>
             <tr>
                 <th>Total: </th>
+                <th></th>
                 <th></th>
                 <th id = "tot"> $<?=total()?> </th>
             </tr>
