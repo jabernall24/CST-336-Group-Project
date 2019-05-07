@@ -1,6 +1,5 @@
 
 $("#submitButton").on("click", function(){
-            
     let transmission = "";
 
     if($("#transmission1").is(":checked")) {
