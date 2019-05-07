@@ -1,6 +1,8 @@
 <?php
     session_start();
-    // print_r($_SESSION);
+    function displayWebsiteName() {
+        echo "<h1 id='websiteName'>CARSITE NAME HERE</h1>";
+    }
     function displayNavButtons() {
         if (isset($_SESSION['adminName'])){
             echo "
@@ -15,7 +17,7 @@
         }else {
             echo "
             <strong id='usersName'>Hello, Guest</strong><form action='login.php'>
-            <button id='logoutBtn' class='btn btn-primary'><span class='fas fa-sign-in-alt'></span>Log in</button>
+            <button id='logInBtn' class='btn btn-primary'><span class='fas fa-sign-in-alt'></span>Log in</button>
             </form>";
         }
     }

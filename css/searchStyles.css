@@ -12,25 +12,12 @@
 .Text{
     padding-left: 15px;
 }
-.navbar-expand-lg {
-    width: 100%;
-    background-color: #5184d6;
-}
-.nav-link {
-    color: black;
-    padding-left: 20px;
-}
-div,#title{
+
+#title, #cars{
     padding-left: 10px;
 }
 
 .buttons {
     float: right;
     margin-right: 25px;
-}
-#usersName {
-    padding-right: 20px;
-}
-#websiteName {
-    padding-right: 40px;
 }

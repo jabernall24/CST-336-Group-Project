@@ -17,11 +17,12 @@
         
         <!--css-->
         <link rel="stylesheet" href="css/index.css" type="text/css" />
+        <link rel="stylesheet" href="css/loadHeader.css" type="text/css" />
     </head>
     
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <?=displayWebsiteName()?>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -36,8 +37,7 @@
             </div>
             <?=displayNavButtons()?>
         </nav>
-        
-        
+
         
         <img id = "banner" src="img/logo.png"></img><br>
         <br>

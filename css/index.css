@@ -33,42 +33,14 @@ main {
     padding: 25px;
 }
 
-h1 {
-    text-align: left;
-}
-
-#search {
-    text-align: center;
-}
-
-#logInBtn {
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.navbar-expand-lg {
-    width: 100%;
-    background-color: #5184d6;
-}
-
-.nav-link {
-    color: black;
-}
-
-#websiteName {
-    padding-right: 50px;
-}
-
-#usersName {
-    padding-right: 20px;
-}
 body{
     text-align: center;
 }
+
 #f{
     font-size: 36pt;
 }
+
 #banner{
     height:15%;
     width: 100%;
