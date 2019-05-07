@@ -45,7 +45,11 @@
             <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
             <strong>Color: </strong> " . $val["color"] . " <br/>
             </td>
-            <td>" . $val["total"] . "</td>
+            <td>
+                " . $val["total"] . " <br/>
+                <button class='btn btn-danger btn-sm removeOne' data-toggle='modal' data-target='#removeOneModal' value='" . $val["cartId"] . "'><span class='fas fa-minus'></span> Remove one</button> <br/> <br/>
+                <button class='btn btn-danger btn-sm removeAll' data-toggle='modal' data-target='#removeAllModal' value='" . $val["carId"] . "'><span class='fas fa-trash-alt'></span> Remove all</button>
+            </td>
             <td class='table-price' >$" . $val["price"] . "</td>
         </tr>";
         }
@@ -116,16 +120,91 @@
         
         <br><br><br>
         
+        <div class="modal fade" id="removeOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">This action CANNOT be undone</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to remove one item?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="removeTheItem">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="removeAllModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">This action CANNOT be undone</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="removeAllItems">
+                        Are you sure you want to delete ALL items?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="removeTheItems">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         
         
         <script>
 
                         var totalPrice = 0;
                         var discountAmount = 0;
-
+                    var cartId;
+                    var carId;
                   $(document).ready(function(){
+                      
+                    $("#removeTheItem").on('click', function() {
+                        $.ajax({
+                            method: "GET",
+                            url: "api/deleteFromCart.php",
+                            data: { 
+                                "cartId": cartId
+                            },
+                            success: function(data, status) {
+                                location.reload(true);
+                            }
+                        }); //ajax 
+                    })
+                      
+                      $("#removeTheItems").on('click', function() {
+                          $.ajax({
+                            method: "GET",
+                            url: "api/deleteFromCart.php",
+                            data: { 
+                                "carId": carId
+                            },
+                            success: function(data, status) {
+                                location.reload(true);
+                            }
+                        }); //ajax 
+                      })
+                      
+                $(".removeOne").on('click', function() {
+                    cartId = $(this).val();
+                })
+                    
+                $(".removeAll").on('click', function() {
+                    carId = $(this).val();
+                })
 
-                
             $( "#coupon" ).change(function() { //apply coupon code
 
                         resetTotal()
