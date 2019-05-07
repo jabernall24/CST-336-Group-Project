@@ -1,11 +1,8 @@
 <?php
-    include 'loadHeader.php';
     session_start();
+    include 'loadHeader.php';
     
-    //checks whether user has logged in
-    if (!isset($_SESSION['adminName'])) {
-        header('location: login.php'); //sends users to login screen if they haven't logged in
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,88 +21,19 @@
         <link rel="stylesheet" href="css/admin.css" type="text/css" />
         <script>
         
-            function confirmDelete(){
-                
-                return confirm("Are you sure you want to delete this car?");
-                
-            }
-            
-            
-          
-              
-              function LogSum()
-              {
-                    $.ajax({
-                    type: "GET",
-                    url: "api/getTotalLog.php",
-                    dataType: "json",
-                    success: function(data, status) {
+        
+        
+        
+        
+        
 
-                    alert("Everything in your inventory costs $"+data)
-            
-                  }
-                  
-
-                }); 
-                
-              }
-              
-              
-              
-              
-              
-              
-                            
-              function LogAVG()
-              {
-                    $.ajax({
-                    type: "GET",
-                    url: "api/getAverageLog.php",
-                    dataType: "json",
-                    success: function(data, status) {
-
-                    alert("The average price of the cars in your inventory is $"+data)
-            
-                  }
-                  
-
-                }); 
-                
-              }
-              
-              
-              
-              
-              
-              
-                            
-              function LogCount()
-              {
-                    $.ajax({
-                    type: "GET",
-                    url: "api/getCountLog.php",
-                    dataType: "json",
-                    success: function(data, status) {
-
-                    alert("You have "+data +" cars in the inventory");
-            
-                  }
-                  
-
-                }); 
-                
-              }
-              
-              
-              
-              
             
             $(document).ready(function(){
 
                 $.ajax({
 
                     type: "GET",
-                    url: "api/getAllCars.php",
+                    url: "api/getpurchaseHistory.php",
                     dataType: "json",
                     success: function(data,status) {
         
@@ -174,23 +102,6 @@
                 });//ajax
                 
               
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-    
-              
-              
-              
-              
-              
             });//documentReady
             
         </script>
@@ -205,15 +116,12 @@
     </head>
     <body>
                 <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <h1 id="websiteName">WEBSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search.php">Search</a>
                     </li>
                     <?=isAdmin()?>
                 </ul>
@@ -234,25 +142,6 @@
         <h4 class="text-center"> Welcome <?=$_SESSION['adminName']?>  <br>  <br>   
 </h4>
 
-
-        <div class= "row">
-              <div  class="text-center col">
-        <button onclick="LogSum()" class ="btn btn-info text-center ">Get SUM</button>
-        </div>
-        
-        
-        <div action="" class="text-center col">
-        <button onclick="LogAVG()" class ="btn btn-info text-center ">Get AVG</button>
-        </div>
-        
-        
-        <div action="" class="text-center col">
-        <button onclick="LogCount()" class ="btn btn-info text-center ">Get COUNT</button>
-        </div>
-        </div>
-      
-        
-        
         </div>
 
         
@@ -261,7 +150,6 @@
     
     
          <div class=" text-center">
-
 
 
         <form action="addCars.php" class="text-center">

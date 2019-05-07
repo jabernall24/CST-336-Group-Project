@@ -4,6 +4,20 @@
     include 'loadHeader.php';
     include 'dbConnection.php';
     
+    function makeCall() {
+        $conn = getDatabaseConnection("ottermart");
+        
+        $userId = $_SESSION['username'];
+       
+        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId WHERE cart.userId = $userId;";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $record;
+    }
+
     function total(){
         $conn = getDatabaseConnection("ottermart");
         $userId = $_SESSION['username'];
@@ -15,28 +29,13 @@
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
         
         echo $record["SUM(cars.price)"];
+
     }
     
-    function makeCall() {
-        $conn = getDatabaseConnection("ottermart");
-        
-        $userId = $_SESSION['username'];
-        
-        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
-        FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $dups = array();
-        
-        foreach($record as $key => $val) {
-            
-            if(!in_array($val["carId"], $dups)) {
-                $dups[] = $val["carId"];
-                
-                echo "
+    function some() {
+        $data = makeCall();
+        foreach($data as $key => $val) {
+            echo "
                 <tr id='" . $val["carId"] . "'>
                 <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
                 <td class='table-desc'>
@@ -45,13 +44,20 @@
                 <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
                 <strong>Color: </strong> " . $val["color"] . " <br/>
                 </td>
-                <td>" . $val["total"] . "</td>
                 <td class='table-price' >$" . $val["price"] . "</td>
             </tr>";
-            }
-            
         }
     }
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,7 +76,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <h1 id="websiteName">WEBSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -89,16 +95,127 @@
             <tr>
                 <th>Image</th>
                 <th>Description</th>
-                <th>Total</th>
                 <th>Price</th>
             </tr>
-            <?=makeCall()?>
+            <?=some()?>
+             <tr>
+                <span><th>Coupon:  <span class="form-group">
+        <input type="text" class="form-control" id="coupon">
+      </span></span>
+      </th>
+                <th></th>
+                <th id="couponDiscount">  </th>
+            </tr>
             <tr>
                 <th>Total: </th>
                 <th></th>
-                <th></th>
-                <th> <span id = "tot">$<?=total()?> </span></th>
+                <th id = "tot"> $<?=total()?> </th>
             </tr>
+             
         </table>
+        
+        <br><br><br>
+        
+        
+        
+        <script>
+
+                        var totalPrice = 0;
+                        var discountAmount = 0;
+
+                  $(document).ready(function(){
+
+                
+            $( "#coupon" ).change(function() { //apply coupon code
+
+                        resetTotal()
+
+  
+                $.ajax({
+                    type: "GET",
+                    url: "api/applyCouponAPI.php",
+                    dataType: "json",
+                    data : {"coupon": $("#coupon").val()
+                    },
+                    success: function(data, status) {
+
+                    
+                  $( "#couponDiscount" ).html(data.discountAmount +"% Discount")
+                    discountAmount = data.discountAmount;
+
+       
+                  if(data.discountAmount >0){
+                  
+                  
+                    $.ajax({
+                    type: "GET",
+                    url: "api/getTotalPrice.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+
+                     totalPrice = data;
+                     
+
+                  let undiscountedAmount = totalPrice;
+                  let discount = discountAmount/100 * undiscountedAmount
+                  let newTotal  = undiscountedAmount - discount
+                  $( "#tot" ).html("$" + newTotal);
+                  }
+                  
+
+                }); 
+                
+                  }
+                  else
+                  {
+                     $( "#couponDiscount" ).html("")
+
+                  }
+  
+                  
+                    }
+                 
+                }); 
+                   
+
+        
+        
+        function resetTotal()
+        {
+
+              $.ajax({
+                    type: "GET",
+                    url: "api/getTotalPrice.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+
+                     totalPrice = data;
+
+                  $( "#tot" ).html("$" + totalPrice);
+                  }
+                  
+                 
+                }); 
+                
+        }
+
+    }); 
+    
+    
+
+
+
+    
+    
+    
+    
+    }); 
+
+
+        </script>
+        
+        
     </body>
 </html>
