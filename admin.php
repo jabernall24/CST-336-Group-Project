@@ -31,10 +31,74 @@
             }
             
             
-            /*function openModal(){
-                $('#productModal').modal("show"); //opens the modal
-            }
-            */
+          
+              
+              function LogSum()
+              {
+                    $.ajax({
+                    type: "GET",
+                    url: "api/getTotalLog.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+                    alert("Everything in your inventory costs $"+data)
+            
+                  }
+                  
+
+                }); 
+                
+              }
+              
+              
+              
+              
+              
+              
+                            
+              function LogAVG()
+              {
+                    $.ajax({
+                    type: "GET",
+                    url: "api/getAverageLog.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+                    alert("The average price of the cars in your inventory is $"+data)
+            
+                  }
+                  
+
+                }); 
+                
+              }
+              
+              
+              
+              
+              
+              
+                            
+              function LogCount()
+              {
+                    $.ajax({
+                    type: "GET",
+                    url: "api/getCountLog.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+                    alert("You have "+data +" cars in the inventory");
+            
+                  }
+                  
+
+                }); 
+                
+              }
+              
+              
+              
+              
             
             $(document).ready(function(){
 
@@ -110,6 +174,23 @@
                 });//ajax
                 
               
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+    
+              
+              
+              
+              
+              
             });//documentReady
             
         </script>
@@ -153,6 +234,25 @@
         <h4 class="text-center"> Welcome <?=$_SESSION['adminName']?>  <br>  <br>   
 </h4>
 
+
+        <div class= "row">
+              <div  class="text-center col">
+        <button onclick="LogSum()" class ="btn btn-info text-center ">Get SUM</button>
+        </div>
+        
+        
+        <div action="" class="text-center col">
+        <button onclick="LogAVG()" class ="btn btn-info text-center ">Get AVG</button>
+        </div>
+        
+        
+        <div action="" class="text-center col">
+        <button onclick="LogCount()" class ="btn btn-info text-center ">Get COUNT</button>
+        </div>
+        </div>
+      
+        
+        
         </div>
 
         
@@ -161,6 +261,7 @@
     
     
          <div class=" text-center">
+
 
 
         <form action="addCars.php" class="text-center">
