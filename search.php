@@ -29,7 +29,7 @@
         
         <h1 id = "title"> Search </h1>
         <div id = "submitArea">
-            <input type="text" id = "query">
+            <input type="text" id = "query" placeholder="Make, Model, or Year">
             <button id="submit" class="btn btn-primary btn-sm">Submit</button>
             <span class = "Text">Transmission:</span>
             
