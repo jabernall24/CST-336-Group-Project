@@ -13,7 +13,7 @@
     
     if (!empty($q)) { //user entered a product keyword
         $sql .=  " AND (make LIKE :search OR model LIKE :search OR year LIKE :search)";
-        $namedParameters[":search"] = $q;
+        $namedParameters[":search"] = "%$q%";
     }
     
     if(!empty($tr)) {
