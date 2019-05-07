@@ -34,7 +34,7 @@
             <span class = "Text">Transmission:</span>
             
             <select id = "transmissionSelect" class="btn btn-primary dropdown-toggle">
-                <option>Select one</option>
+                <option value="">Select one</option>
                 <option>Automatic</option>
                 <option>Manual</option>
             </select>
@@ -42,7 +42,7 @@
             <span class = "Text">Vehicle type:</span>
             
             <select id = "typeSelect" class="btn btn-primary dropdown-toggle">
-                <option>Select one</option>
+                <option value="">Select one</option>
                 <option>SUV</option>
                 <option>Truck</option>
                 <option>Sedan</option>
@@ -52,9 +52,29 @@
         <br>
         
         <div id = "cars"></div>
-        
+
         <script>
-            getCarInfo();
+        
+            if("<?=$_GET["test"]?>" === "") {
+                getCarInfo();
+            }else {
+                $.ajax({
+                    type: "GET",
+                    url: "api/searchCars.php",
+                    dataType: "json",
+                    data : {
+                        "search": "<?=$_GET["test"]?>"
+                    },
+                    success: function(data, status) {
+                        for(var i = 0; i < data.length; i++){
+                            $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
+                            $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
+                            $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + "</span>");
+                            $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart!</button></div> <br>")
+                        }
+                    }
+                }); // ajax
+            }
             
             function cartAdd(id){
                 if($("#"+id).text().trim() == "Add to cart!"){
@@ -64,16 +84,16 @@
                     }
                     else{
                         $.ajax({
-                        type: "POST",
-                        url: "addToCart.php",
-                        dataType: "json",
-                        data : {
-                            "carId":id,
-                            "username": 0<?=$_SESSION['username']?>
-                        },
-                        success: function(data, status) {
-                        
-                        }
+                            type: "POST",
+                            url: "addToCart.php",
+                            dataType: "json",
+                            data : {
+                                "carId":id,
+                                "username": 0<?=$_SESSION['username']?>
+                            },
+                            success: function(data, status) {
+                            
+                            }
                         }); // ajax
                         
                         $("#" + id).html("Added!")

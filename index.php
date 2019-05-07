@@ -31,10 +31,10 @@
         
         <img id = "banner" src="img/logo.png"></img><br>
         <br>
-        <div id="search">
-            <strong>Search:</strong> <input type="text" name="" id="carSearch" />
-            <button type="button" class="btn btn-primary btn-sm">Search</button>
-        </div>
+        <form action="search.php" method="GET" id="search">
+            <strong>Search:</strong> <input type="text" name="test" id="carSearch" />
+            <button class="btn btn-primary btn-sm">Search</button>
+        </form>
         <strong id ="f">Featured Car</strong> <br>
         <strong id="featuredCarName"></strong> <br/>
         <input type="hidden" name="signedIn" value="<?=$_SESSION['username']?>"/>
