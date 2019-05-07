@@ -4,6 +4,20 @@
     include 'loadHeader.php';
     include 'dbConnection.php';
     
+    function makeCall() {
+        $conn = getDatabaseConnection("ottermart");
+        
+        $userId = $_SESSION['username'];
+       
+        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId WHERE cart.userId = $userId;";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $record;
+    }
+
     function total(){
         $conn = getDatabaseConnection("ottermart");
         $userId = $_SESSION['username'];
@@ -15,24 +29,6 @@
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
         
         echo $record["SUM(cars.price)"];
-    }
-    
-    function makeCall() {
-        $conn = getDatabaseConnection("ottermart");
-        
-        $userId = $_SESSION['username'];
-        
-        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
-        FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $dups = array();
-        
-<<<<<<< HEAD
-        echo $record["SUM(cars.price)"];
 
     }
     
@@ -40,14 +36,6 @@
         $data = makeCall();
         foreach($data as $key => $val) {
             echo "
-=======
-        foreach($record as $key => $val) {
-            
-            if(!in_array($val["carId"], $dups)) {
-                $dups[] = $val["carId"];
-                
-                echo "
->>>>>>> 30afd6b5e01293c36d7591cc87eb6700e6b3c0ae
                 <tr id='" . $val["carId"] . "'>
                 <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
                 <td class='table-desc'>
@@ -56,11 +44,8 @@
                 <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
                 <strong>Color: </strong> " . $val["color"] . " <br/>
                 </td>
-                <td>" . $val["total"] . "</td>
                 <td class='table-price' >$" . $val["price"] . "</td>
             </tr>";
-            }
-            
         }
     }
     
@@ -91,7 +76,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <h1 id="websiteName">WEBSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -110,10 +95,8 @@
             <tr>
                 <th>Image</th>
                 <th>Description</th>
-                <th>Total</th>
                 <th>Price</th>
             </tr>
-<<<<<<< HEAD
             <?=some()?>
              <tr>
                 <span><th>Coupon:  <span class="form-group">
@@ -123,14 +106,10 @@
                 <th></th>
                 <th id="couponDiscount">  </th>
             </tr>
-=======
-            <?=makeCall()?>
->>>>>>> 30afd6b5e01293c36d7591cc87eb6700e6b3c0ae
             <tr>
                 <th>Total: </th>
                 <th></th>
-                <th></th>
-                <th> <span id = "tot">$<?=total()?> </span></th>
+                <th id = "tot"> $<?=total()?> </th>
             </tr>
              
         </table>
