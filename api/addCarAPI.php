@@ -19,7 +19,7 @@
     VALUES (:make, :model, :year, :color, :type, :transmission, :odometer, :price, :image)";
    
     $stmt = $conn->prepare($sql);
-    $stmt->execute($arr);
+    $stmt->execute($namedParameters);
     
     $sql ="SELECT COUNT(1) totalCars FROM cars";
     
