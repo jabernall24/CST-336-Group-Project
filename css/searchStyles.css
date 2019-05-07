@@ -23,3 +23,14 @@
 div,#title{
     padding-left: 10px;
 }
+
+.buttons {
+    float: right;
+    margin-right: 25px;
+}
+#usersName {
+    padding-right: 20px;
+}
+#websiteName {
+    padding-right: 40px;
+}

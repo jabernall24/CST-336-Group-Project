@@ -21,7 +21,7 @@
     
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">WEBSITE NAME HERE</h1>
+            <h1 id="websiteName">CARSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -37,13 +37,15 @@
             <?=displayNavButtons()?>
         </nav>
         
-        <br/>
         
+        
+        <img id = "banner" src="img/logo.png"></img><br>
+        <br>
         <div id="search">
-            <input type="text" name="" id="carSearch" />
+            <strong>Search:</strong> <input type="text" name="" id="carSearch" />
             <button type="button" class="btn btn-primary btn-sm">Search</button>
         </div>
-        
+        <strong id ="f">Featured Car</strong> <br>
         <strong id="featuredCarName"></strong> <br/>
         <input type="hidden" name="signedIn" value="<?=$_SESSION['username']?>"/>
         <main>

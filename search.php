@@ -57,7 +57,7 @@
                 $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
                 $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
                 $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + " " + "</span>");
-                $("#cars").append("<button class = 'buttons' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart! </button></div> <br>");
+                $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart! </button></div> <br>");
                 
             }
             }
@@ -79,7 +79,7 @@
                 $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
                 $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
                 $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + "</span>");
-                $("#cars").append("<button class = 'buttons' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart!</button></div> <br>")
+                $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart!</button></div> <br>")
             }
             }
         });
@@ -90,12 +90,15 @@
     </head>
     <body>
     <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">WEBSITE NAME HERE</h1>
+            <h1 id="websiteName">CARSITE NAME HERE</h1>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.php">Search</a>
                     </li>
                     <?=isAdmin()?>
                 </ul>
@@ -106,15 +109,15 @@
         <h1 id = "title"> Search </h1>
         <div id = "submitArea">
         <input type="text" id = "query">
-        <button id="submit">Submit</button>
+        <button id="submit" class="btn btn-primary btn-sm">Submit</button>
         <span class = "Text">Transmission:</span>
-        <select id = "transmissionSelect">
+        <select id = "transmissionSelect" class="btn btn-primary dropdown-toggle">
                 <option>Select one</option>
                 <option>Automatic</option>
                 <option>Manual</option>
         </select>
         <span class = "Text">Vehicle type:</span>
-        <select id = "typeSelect">
+        <select id = "typeSelect" class="btn btn-primary dropdown-toggle">
                 <option>Select one</option>
                 <option>SUV</option>
                 <option>Truck</option>
