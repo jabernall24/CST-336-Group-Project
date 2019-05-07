@@ -31,8 +31,8 @@
         
         <img id = "banner" src="img/logo.png"></img><br>
         <br>
-        <form action="search.php" method="GET" id="search">
-            <strong>Search:</strong> <input type="text" name="test" id="carSearch" />
+        <form action="search.php" method="GET">
+            <strong>Search:</strong> <input type="text" name="search" id="carSearch" />
             <button class="btn btn-primary btn-sm">Search</button>
         </form>
         <strong id ="f">Featured Car</strong> <br>

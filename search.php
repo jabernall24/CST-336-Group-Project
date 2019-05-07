@@ -55,7 +55,7 @@
 
         <script>
         
-            if("<?=$_GET["test"]?>" === "") {
+            if("<?=$_GET["search"]?>" === "") {
                 getCarInfo();
             }else {
                 $.ajax({
@@ -63,7 +63,7 @@
                     url: "api/searchCars.php",
                     dataType: "json",
                     data : {
-                        "search": "<?=$_GET["test"]?>"
+                        "search": "<?=$_GET["search"]?>"
                     },
                     success: function(data, status) {
                         for(var i = 0; i < data.length; i++){
@@ -119,6 +119,7 @@
             } // getCarInfo
             
             $("#submit").on("click",function(){
+                history.replaceState({}, '', '/CST-336-Group-Project/search.php');
                 $("#cars").empty();
                 
                 $.ajax({
