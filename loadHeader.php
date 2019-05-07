@@ -1,5 +1,20 @@
 <?php
     session_start();
+    
+    function loadSkeleton() {
+        echo "<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+                <ul class='navbar-nav mr-auto'>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='index.php'>Home</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='search.php'>Search</a>
+                    </li>
+                    ".isAdmin()."
+                </ul>
+            </div>";
+    }
+    
     function displayWebsiteName() {
         echo "<h1 id='websiteName'>CARSITE NAME HERE</h1>";
     }
@@ -24,16 +39,18 @@
     
     function isAdmin() {
         if(isset($_SESSION['adminName']) || isset($_SESSION['user'])) {
-            echo "<li class='nav-item'>
+            $re .= "<li class='nav-item'>
                 <a class='nav-link' href='cart.php'>Cart</a>
               </li>";
         }
 
         if (isset($_SESSION['adminName'])) {
-            echo "<li class='nav-item'>
+            $re .= "<li class='nav-item'>
                         <a class='nav-link' href='admin.php'>Admin</a>
                     </li>";
         }
+        
+        return $re;
     }
 
 ?>
