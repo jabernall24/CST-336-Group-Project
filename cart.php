@@ -1,5 +1,4 @@
 <?php
-    
     session_start();
     include 'loadHeader.php';
     include 'dbConnection.php';
@@ -15,52 +14,52 @@
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
         
         echo $record["SUM(cars.price)"];
-
-    }
+    } // total
     
     function makeCall() {
-    $conn = getDatabaseConnection("ottermart");
-    
-    $userId = $_SESSION['username'];
-    
-    $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
-    FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $dups = array();
-    
-    foreach($record as $key => $val) {
+        $conn = getDatabaseConnection("ottermart");
         
-        if(!in_array($val["carId"], $dups)) {
-            $dups[] = $val["carId"];
+        $userId = $_SESSION['username'];
+        
+        $sql = "SELECT * FROM cart INNER JOIN cars ON cart.carId = cars.carId LEFT JOIN (SELECT carId, COUNT(carId) as total
+        FROM cart WHERE userId = $userId GROUP BY carId) A ON A.carId = cart.carId WHERE cart.userId = $userId";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $record = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $dups = array();
+    
+        foreach($record as $key => $val) {
             
-            echo "
-            <tr id='" . $val["carId"] . "'>
-            <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
-            <td class='table-desc'>
-            <strong class='table-carName'>" . $val["year"] . " " . $val["make"] . " " . $val["model"] . "</strong> <br/><br/>
-            <strong>Mileage: </strong> " . $val["odometer"] . " <br/>
-            <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
-            <strong>Color: </strong> " . $val["color"] . " <br/>
-            </td>
-            <td>
-                " . $val["total"] . " <br/>
-                <button class='btn btn-danger btn-sm removeOne' data-toggle='modal' data-target='#removeOneModal' value='" . $val["cartId"] . "'><span class='fas fa-minus'></span> Remove one</button> <br/> <br/>
-                <button class='btn btn-danger btn-sm removeAll' data-toggle='modal' data-target='#removeAllModal' value='" . $val["carId"] . "'><span class='fas fa-trash-alt'></span> Remove all</button>
-            </td>
-            <td class='table-price' >$" . $val["price"] . "</td>
-        </tr>";
+            if(!in_array($val["carId"], $dups)) {
+                $dups[] = $val["carId"];
+                
+                echo "
+                <tr id='" . $val["carId"] . "'>
+                    <td class='table-img'><img src='" . $val["image"] . "' width='200'></td>
+                    <td class='table-desc'>
+                        <strong class='table-carName'>" . $val["year"] . " " . $val["make"] . " " . $val["model"] . "</strong> <br/><br/>
+                        <strong>Mileage: </strong> " . $val["odometer"] . " <br/>
+                        <strong>Transmission: </strong> " . $val["transmission"] . " <br/>
+                        <strong>Color: </strong> " . $val["color"] . " <br/>
+                    </td>
+                    <td>
+                        " . $val["total"] . " <br/>
+                        <button class='btn btn-danger btn-sm removeOne' data-toggle='modal' data-target='#removeOneModal' value='" . $val["cartId"] . "'><span class='fas fa-minus'></span> Remove one</button> <br/> <br/>
+                        <button class='btn btn-danger btn-sm removeAll' data-toggle='modal' data-target='#removeAllModal' value='" . $val["carId"] . "'><span class='fas fa-trash-alt'></span> Remove all</button>
+                    </td>
+                    <td class='table-price' >$" . $val["price"] . "</td>
+                </tr>";
+            }
+            
         }
-        
-    }
-    }
+    } // makeCall
   
 ?>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8"/>
         <title> Cart </title>
         <!--jquery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -79,18 +78,7 @@
     <body>
         <nav class="navbar navbar-expand-lg">
             <?=displayWebsiteName()?>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search.php">Search</a>
-                    </li>
-                    <?=isAdmin()?>
-                </ul>
-            </div>
+            <?=loadSkeleton()?>
             <?=displayNavButtons()?>
         </nav>
         <table>
@@ -101,11 +89,10 @@
                 <th>Price</th>
             </tr>
             <?=makeCall()?>
-             <tr>
-                <span><th>Coupon:  <span class="form-group">
-        <input type="text" class="form-control" id="coupon">
-      </span></span>
-      </th>
+            <tr>
+                <th>Coupon:  <span class="form-group">
+                    <input type="text" class="form-control" id="coupon">
+                </th>
                 <th></th>
                 <th id="couponDiscount">  </th>
             </tr>
@@ -115,9 +102,7 @@
                 <th></th>
                 <th id = "tot"> $<?=total()?> </th>
             </tr>
-             
         </table>
-        
         <br><br><br>
         
         <div class="modal fade" id="removeOneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -160,141 +145,6 @@
             </div>
         </div>
         
-        
-        
-        
-        <script>
-
-                        var totalPrice = 0;
-                        var discountAmount = 0;
-                    var cartId;
-                    var carId;
-                  $(document).ready(function(){
-                      
-                    $("#removeTheItem").on('click', function() {
-                        $.ajax({
-                            method: "GET",
-                            url: "api/deleteFromCart.php",
-                            data: { 
-                                "cartId": cartId
-                            },
-                            success: function(data, status) {
-                                location.reload(true);
-                            }
-                        }); //ajax 
-                    })
-                      
-                      $("#removeTheItems").on('click', function() {
-                          $.ajax({
-                            method: "GET",
-                            url: "api/deleteFromCart.php",
-                            data: { 
-                                "carId": carId
-                            },
-                            success: function(data, status) {
-                                location.reload(true);
-                            }
-                        }); //ajax 
-                      })
-                      
-                $(".removeOne").on('click', function() {
-                    cartId = $(this).val();
-                })
-                    
-                $(".removeAll").on('click', function() {
-                    carId = $(this).val();
-                })
-
-            $( "#coupon" ).change(function() { //apply coupon code
-
-                        resetTotal()
-
-  
-                $.ajax({
-                    type: "GET",
-                    url: "api/applyCouponAPI.php",
-                    dataType: "json",
-                    data : {"coupon": $("#coupon").val()
-                    },
-                    success: function(data, status) {
-
-                    
-                  $( "#couponDiscount" ).html(data.discountAmount +"% Discount")
-                    discountAmount = data.discountAmount;
-
-       
-                  if(data.discountAmount >0){
-                  
-                  
-                    $.ajax({
-                    type: "GET",
-                    url: "api/getTotalPrice.php",
-                    dataType: "json",
-                    success: function(data, status) {
-
-
-                     totalPrice = data;
-                     
-
-                  let undiscountedAmount = totalPrice;
-                  let discount = discountAmount/100 * undiscountedAmount
-                  let newTotal  = undiscountedAmount - discount
-                  $( "#tot" ).html("$" + newTotal);
-                  }
-                  
-
-                }); 
-                
-                  }
-                  else
-                  {
-                     $( "#couponDiscount" ).html("")
-
-                  }
-  
-                  
-                    }
-                 
-                }); 
-                   
-
-        
-        
-        function resetTotal()
-        {
-
-              $.ajax({
-                    type: "GET",
-                    url: "api/getTotalPrice.php",
-                    dataType: "json",
-                    success: function(data, status) {
-
-
-                     totalPrice = data;
-
-                  $( "#tot" ).html("$" + totalPrice);
-                  }
-                  
-                 
-                }); 
-                
-        }
-
-    }); 
-    
-    
-
-
-
-    
-    
-    
-    
-    }); 
-
-
-        </script>
-        
-        
+        <script type="text/javascript" src="js/cart.js"></script>
     </body>
 </html>
