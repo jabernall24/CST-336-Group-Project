@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include 'loadHeader.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +13,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
         <link rel="stylesheet" href="css/login.css" type="text/css" />
+        <link rel="stylesheet" href="css/loadHeader.css" type="text/css" />
     </head>
     
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <?=displayWebsiteName()?>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">

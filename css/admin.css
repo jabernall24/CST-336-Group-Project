@@ -1,28 +1,4 @@
-.navbar-expand-lg {
-    width: 100%;
-    background-color: #5184d6;
-}
 
-.nav-link {
-    color: black;
-}
-
-.active {
-    background-color: white;
-}
-
-#websiteName {
-    padding-right: 50px;
-}
-
-#usersName {
-    padding-right: 20px;
-}
-
-
-
-.logButton
-{
-    
+.logButton {
     padding: 10px;
 }

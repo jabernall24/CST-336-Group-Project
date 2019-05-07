@@ -33,20 +33,3 @@ img {
 form {
     padding: 20% 0;
 }
-
-.navbar-expand-lg {
-    width: 100%;
-    background-color: #5184d6;
-}
-
-.nav-link {
-    color: black;
-}
-
-.active {
-    background-color: white;
-}
-
-#websiteName {
-    padding-right: 50px;
-}

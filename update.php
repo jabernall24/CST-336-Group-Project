@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    include 'loadHeader.php';
     
     //checks whether user has logged in
     if (!isset($_SESSION['adminName'])) {
@@ -22,7 +23,7 @@
         <!--fontawesome-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
          
-         <link rel="stylesheet" href="css/update.css" type="text/css" />
+         <link rel="stylesheet" href="css/loadHeader.css" type="text/css" />
          <script>
                 
                
@@ -135,7 +136,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <?=displayWebsiteName()?>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">

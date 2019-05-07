@@ -58,8 +58,7 @@
 <html>
     <head>
         <title> Cart </title>
-        <link rel="stylesheet" href="css/cart.css" type="text/css" />
-                <!--jquery-->
+        <!--jquery-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         
         <!--bootstrap-->
@@ -68,10 +67,14 @@
         
         <!--fontawesome-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        
+        <!--css-->
+        <link rel="stylesheet" href="css/cart.css" type="text/css" />
+        <link rel="stylesheet" href="css/loadHeader.css" type="text/css" />
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
-            <h1 id="websiteName">CARSITE NAME HERE</h1>
+            <?=displayWebsiteName()?>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
