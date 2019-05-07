@@ -29,6 +29,7 @@
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
         
         echo $record["SUM(cars.price)"];
+
     }
     
     function some() {
@@ -47,6 +48,16 @@
             </tr>";
         }
     }
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,11 +98,124 @@
                 <th>Price</th>
             </tr>
             <?=some()?>
+             <tr>
+                <span><th>Coupon:  <span class="form-group">
+        <input type="text" class="form-control" id="coupon">
+      </span></span>
+      </th>
+                <th></th>
+                <th id="couponDiscount">  </th>
+            </tr>
             <tr>
                 <th>Total: </th>
                 <th></th>
                 <th id = "tot"> $<?=total()?> </th>
             </tr>
+             
         </table>
+        
+        <br><br><br>
+        
+        
+        
+        <script>
+
+                        var totalPrice = 0;
+                        var discountAmount = 0;
+
+                  $(document).ready(function(){
+
+                
+            $( "#coupon" ).change(function() { //apply coupon code
+
+                        resetTotal()
+
+  
+                $.ajax({
+                    type: "GET",
+                    url: "api/applyCouponAPI.php",
+                    dataType: "json",
+                    data : {"coupon": $("#coupon").val()
+                    },
+                    success: function(data, status) {
+
+                    
+                  $( "#couponDiscount" ).html(data.discountAmount +"% Discount")
+                    discountAmount = data.discountAmount;
+
+       
+                  if(data.discountAmount >0){
+                  
+                  
+                    $.ajax({
+                    type: "GET",
+                    url: "api/getTotalPrice.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+
+                     totalPrice = data;
+                     
+
+                  let undiscountedAmount = totalPrice;
+                  let discount = discountAmount/100 * undiscountedAmount
+                  let newTotal  = undiscountedAmount - discount
+                  $( "#tot" ).html("$" + newTotal);
+                  }
+                  
+
+                }); 
+                
+                  }
+                  else
+                  {
+                     $( "#couponDiscount" ).html("")
+
+                  }
+  
+                  
+                    }
+                 
+                }); 
+                   
+
+        
+        
+        function resetTotal()
+        {
+
+              $.ajax({
+                    type: "GET",
+                    url: "api/getTotalPrice.php",
+                    dataType: "json",
+                    success: function(data, status) {
+
+
+                     totalPrice = data;
+
+                  $( "#tot" ).html("$" + totalPrice);
+                  }
+                  
+                 
+                }); 
+                
+        }
+
+    }); 
+    
+    
+
+
+
+    
+    
+    
+    
+    }); 
+
+
+        </script>
+        
+        
     </body>
 </html>
