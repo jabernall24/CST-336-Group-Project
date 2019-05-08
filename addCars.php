@@ -37,12 +37,9 @@
             <div class="col"></div>
             <div class="jumbotron col-8">
                 <h1 class="display-4 text-center">Add New Car</h1>
-                <br><br>
-                
+
                 <div class="jumbotron">
-                <h1 class="display-4">Add New Car</h1>
-                <br><br>
-                
+
                 <form>
                     <h4 class="display-8">Car Information</h4>
 
