@@ -50,7 +50,7 @@ $( "#coupon" ).change(function() { //apply coupon code
         success: function(data, status) {
             $( "#couponDiscount" ).html(data.discountAmount +"% Discount")
             discountAmount = data.discountAmount;
-        
+
             if(data.discountAmount >0){
                 $.ajax({
                     type: "GET",
@@ -67,6 +67,7 @@ $( "#coupon" ).change(function() { //apply coupon code
             }
             else {
                 $( "#couponDiscount" ).html("")
+
             }
         
         
@@ -78,6 +79,8 @@ $( "#coupon" ).change(function() { //apply coupon code
     
     
     function resetTotal() {
+      $( "#couponDiscount" ).html("")
+
     $.ajax({
         type: "GET",
         url: "api/getTotalPrice.php",
@@ -85,6 +88,7 @@ $( "#coupon" ).change(function() { //apply coupon code
         success: function(data, status) {
             totalPrice = data;
             $( "#tot" ).html("$" + totalPrice);
+            
         }
     }); // ajax
     
