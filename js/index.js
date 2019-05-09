@@ -16,7 +16,7 @@ $.ajax({
 
 $("#addToCartButton").on('click', function() {
     if($("[name=signedIn]").val() === "") {
-        $("#carAddedSuccessfully").modal("show");
+        $("#promptUserToLogIn").modal("show");
     }else {
         $("#addFeaturedCarToCart").submit();
     }

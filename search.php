@@ -51,6 +51,31 @@
         </div>
         <br>
         
+        <div class="modal" id="promptUserToLogIn" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>An account is required to continue, please login or sign up.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="login.php">
+                            <button class="btn btn-success">Login</button>
+                        </form>
+                        <form action="signup.php">
+                            <button class="btn btn-success">Sign up</button>
+                        </form>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Stay Here</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div id = "cars"></div>
 
         <script>
@@ -80,7 +105,7 @@
                 if($("#"+id).text().trim() == "Add to cart!"){
                     /*** Adds to cart and blanks button out ***/
                     if(0<?=$_SESSION['username']?> == 0){
-                        alert("Please sign in");   
+                        $("#promptUserToLogIn").modal("show");
                     }
                     else{
                         $.ajax({
