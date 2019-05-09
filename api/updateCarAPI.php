@@ -9,14 +9,14 @@ if (!isset($_SESSION['adminName'])) {
 }
 
     include '../dbConnection.php';
-$conn = getDatabaseConnection("ottermart");
+    $conn = getDatabaseConnection("ottermart");
     
     $carId = $_GET['carId'];
     
     
-     $arr = array();
+    $arr = array();
     $arr[":make"] = $_GET["make"];
-   $arr[":model"] = $_GET["model"];
+    $arr[":model"] = $_GET["model"];
     $arr[":type"] = $_GET["type"];
     $arr[":year"] = $_GET["year"];
     $arr[":color"] = $_GET["color"];

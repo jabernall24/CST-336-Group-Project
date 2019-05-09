@@ -104,7 +104,7 @@
         <div class="col"></div>
         
         <form action="admin.php">
-            <div class="modal" id="test" tabindex="-1" role="dialog">
+            <div class="modal" id="carAddedSuccessfully" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

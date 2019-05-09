@@ -73,7 +73,7 @@ $("#submitButton").on("click", function(){
             },
             success: function(data, status) {
                 $("#addedCarName").html($("#year").val() + " " + $("#make").val() + " " + $("#model").val() + " car has been added to the database.");
-                $("#test").modal("show");
+                $("#carAddedSuccessfully").modal("show");
             }
         }); // ajax
     }

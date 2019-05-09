@@ -45,46 +45,46 @@
                     <h4 class="display-8">Car Information</h4>
 
                     <div class="form-group">
-                        <label for="make">Make</label>
+                        <label for="make">Make</label> <span id="makeError" class="addNew"></span>
                         <input type="text" class="form-control" id="make" >
                     </div>
 
                     <div class="form-group">
-                        <label for="model">Model</label>
+                        <label for="model">Model</label> <span id="modelError" class="addNew"></span>
                         <input type="text" class="form-control" id="model">
                     </div>
 
                     <div class="form-group">
-                        <label for="year">Year</label>
+                        <label for="year">Year</label> <span id="yearError" class="addNew"></span>
                         <input type="text" class="form-control" id="year">
                     </div>
 
                     <div class="form-group">
-                        <label for="color">Color</label>
+                        <label for="color">Color</label> <span id="colorError" class="addNew"></span>
                         <input type="text" class="form-control" id="color">
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type</label>
+                        <label for="type">Type</label> <span id="typeError" class="addNew"></span>
                         <input type="text" class="form-control" id="type">
                     </div>
 
                     <div class="form-group">
-                        <label for="odometer">Odometer</label>
+                        <label for="odometer">Odometer</label> <span id="odometerError" class="addNew"></span>
                         <input type="text" class="form-control" id="odometer">
                     </div>
       
                     <div class="form-group">
-                        <label for="price">Price</label>
+                        <label for="price">Price</label> <span id="priceError" class="addNew"></span>
                         <input type="text" class="form-control" id="price">
                     </div>
       
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Image</label> <span id="imageError" class="addNew"></span>
                         <input type="text" class="form-control" id="image">
                     </div>
 
-                    Transmission
+                    Transmission <span id="transmissionError" class="addNew"></span>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="transmission" id="transmission1" value="option1">
                         <label class="form-check-label" for="autoRadio">Automatic</label>
@@ -96,10 +96,32 @@
                     </div>
                     <br>
         
-                    <button  id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                    <button  id="submitButton" type="button" class="btn btn-primary">Submit</button>
                 </form>
 
             </div>
+            
+            <form action="admin.php">
+                <div class="modal" id="updatedCar" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Success</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="addedCarName">The car has been updated.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success">Go to admin</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Stay Here</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
             
             <div class="col"> </div>
         </div>
@@ -134,40 +156,90 @@
                         $("#image").val(data["image"]).change();
                         $("#price").val(data["price"]).change();
                         $("#color").val(data["color"]).change();
+                    },
+                    complete: function(data,status) { //optional, used for debugging purposes
+                        // alert(status);
                     }
                 }); // ajax
             } // getCarInfo
 
             $("#submitButton").on("click",function(){
-            
                 let transmission = "";
+                let valid = true;
                 
                 if($("#transmission1").is(":checked")) {
                     transmission = "Automatic";
                 }else  if($("#transmission2").is(":checked")) {
                     transmission = "Manual";
+                }else {
+                    valid = false;
+                    $("#transmissionError").html("Transmission is required.").css('color', 'red');
+                }
+    
+                if($("#image").val() === "") {
+                    valid = false;
+                    $("#imageError").html("Image is required.").css('color', 'red');
                 }
                 
-                $.ajax({
+                if($("#price").val() === "") {
+                    valid = false;
+                    $("#priceError").html("Price is required.").css('color', 'red');
+                }
+                
+                if($("#odometer").val() === "") {
+                    valid = false;
+                    $("#odometerError").html("Odometer is a required.").css('color', 'red');
+                }
+                
+                if($("#type").val() === "") {
+                    valid = false;
+                    $("#typeError").html("Type is a required.").css('color', 'red');
+                }
+                
+                if($("#color").val() === "") {
+                    valid = false;
+                    $("#colorError").html("Color is a required.").css('color', 'red');
+                }
+                
+                if($("#year").val() === "" || $("#year").val() < 1885 || $("#year") > 2020) {
+                    valid = false;
+                    $("#yearError").html("Valid year is between 1885 and 2020").css('color', 'red');
+                }
+                
+                if($("#model").val() === "") {
+                    valid = false;
+                    $("#modelError").html("Model is a required.").css('color', 'red');
+                }
+                
+                if($("#make").val() === "") {
+                    valid = false;
+                    $("#makeError").html("Make is a required.").css('color', 'red');
+                }
+                
+                if(valid) {
+                    $.ajax({
                     type: "GET",
-                    url: "api/updateCarAPI.php",
-                    dataType: "json",
-                    data:{
-                        "carId": <?=$_GET['carId']?>,
-                        "make": $("#make").val(),
-                        "model": $("#model").val(),
-                        "year": $("#year").val(),
-                        "type": $("#type").val(),
-                        "transmission": transmission,
-                        "odometer": $("#odometer").val(),
-                        "image": $("#image").val(),
-                        "color": $("#color").val(),
-                        "price": $("#price").val()
-                    },
-                    success: function(data, status) {
-
-                    }
-                }); // ajax
+                        url: "api/updateCarAPI.php",
+                        data:{
+                            "carId": <?=$_GET['carId']?>,
+                            "make": $("#make").val(),
+                            "model": $("#model").val(),
+                            "year": $("#year").val(),
+                            "type": $("#type").val(),
+                            "transmission": transmission,
+                            "odometer": $("#odometer").val(),
+                            "image": $("#image").val(),
+                            "color": $("#color").val(),
+                            "price": $("#price").val()
+                        },
+                        success: function(data, status) {
+                            $("#updatedCar").modal("show");
+                        },
+                        complete: function(data,status) { //optional, used for debugging purposes
+                            // alert(status);
+                        }
+                    }); // ajax
+                }
             }); // submitButton
         </script>
     </body>
