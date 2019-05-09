@@ -119,7 +119,7 @@
             } // getCarInfo
             
             $("#submit").on("click",function(){
-                history.replaceState({}, '', '/CST-336-Group-Project/search.php');
+                //history.replaceState({}, '', '/CST-336-Group-Project/search.php');
                 $("#cars").empty();
                 
                 $.ajax({
