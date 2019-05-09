@@ -66,6 +66,26 @@
             <div class= "col-11" id="cars"></div>
             <div class= "col"></div>
         </div>
+        
+        <!--<div class="modal" id="confirmDelete" tabindex="-1" role="dialog">-->
+        <!--    <div class="modal-dialog" role="document">-->
+        <!--        <div class="modal-content">-->
+        <!--            <div class="modal-header">-->
+        <!--                <h5 class="modal-title">Error</h5>-->
+        <!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+        <!--                    <span aria-hidden="true">&times;</span>-->
+        <!--                </button>-->
+        <!--            </div>-->
+        <!--            <div class="modal-body">-->
+        <!--                <p>An account is required to continue, please login or sign up.</p>-->
+        <!--            </div>-->
+        <!--            <div class="modal-footer">-->
+        <!--                <button class="btn btn-success">Confirm</button>-->
+        <!--                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</div>-->
             
         <script type="text/javascript" src="js/admin.js"></script>
     </body>

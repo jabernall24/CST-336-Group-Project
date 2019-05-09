@@ -76,6 +76,13 @@
             </div>
         </div>
         
+        <table id="test">
+            <tr>
+                <th>Image</th>
+                <th>Description</th>
+            </tr>
+        </table>
+        
         <div id = "cars"></div>
 
         <script>
@@ -91,12 +98,7 @@
                         "search": "<?=$_GET["search"]?>"
                     },
                     success: function(data, status) {
-                        for(var i = 0; i < data.length; i++){
-                            $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
-                            $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
-                            $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + "</span>");
-                            $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart!</button></div> <br>")
-                        }
+                        showCars(data);
                     }
                 }); // ajax
             }
@@ -133,15 +135,27 @@
                     url: "api/getAllCars.php",
                     dataType: "json",
                     success: function(data, status) {
-                        for(var i = 0; i < data.length; i++){
-                            $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
-                            $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
-                            $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + " " + "</span>");
-                            $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart! </button></div> <br>");
-                        }
+                        showCars(data);
                     }
                 }); // ajax
             } // getCarInfo
+            
+            function showCars(data) {
+                $(".searchRows").remove();
+                data.forEach(function(item) {
+                            $("#test tr:last").after("<tr class='searchRows'> " +
+                            "<td class='table-img'><img src='" + item.image + "' width='200'></td>" +
+                            "<td class='table-desc'> " +
+                        "<strong class='table-carName'>" + item.year + " " + item.make + " " + item.model + "</strong><br/>" +
+                        "<strong>Mileage: </strong> " + item.odometer + " <br/>" +
+                        "<strong>Transmission: </strong> " + item.transmission + " <br/>" +
+                        "<strong>Color: </strong> " + item.color + " <br/>" +
+                        "<strong>Type: </strong> " + item.type + "<br/>" +
+                        "<strong>Price: </strong>$" + item.price + "<br/>" +
+                        "<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + item.carId + "' onclick ='" + "cartAdd(" + item.carId + ")" + "'> Add to cart! </button>" +
+                            "</td></tr>");
+                        })
+            }
             
             $("#submit").on("click",function(){
                 //history.replaceState({}, '', '/CST-336-Group-Project/search.php');
@@ -157,12 +171,7 @@
                         "type":$("#typeSelect").val(),
                     },
                     success: function(data, status) {
-                        for(var i = 0; i < data.length; i++){
-                            $("#cars").append("<div class = 'carDiv'><img class = 'carpic' src='" + data[i]["image"] + "' alt = 'car' height='100' width='115' /> ");
-                            $("#cars").append("<span class = 'carname'>" + data[i]["make"] + " " + data[i]["model"] + " " + data[i]["year"] + "</span>" + "<br>" );
-                            $("#cars").append("<span class = 'cardetails'>" + "Type: " + data[i]["type"] + ",  Color: " + data[i]["color"] + ",  Transmission: " + data[i]["transmission"] + ",  Odometer: " + data[i]["odometer"] + ",  Price: $" + data[i]["price"] + "</span>");
-                            $("#cars").append("<button class = 'btn btn-info btn-lg buttons fas fa-shopping-cart' id ='" + data[i]["carId"] + "' onclick ='" + "cartAdd(" + data[i]["carId"]+")" + "'> Add to cart!</button></div> <br>")
-                        }
+                        showCars(data);
                     }
                 }); // ajax
             }); // submit
