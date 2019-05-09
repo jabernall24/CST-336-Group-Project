@@ -13,7 +13,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #f4f8ff;;
 }
 
 .table-price {
