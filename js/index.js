@@ -14,6 +14,10 @@ $.ajax({
     }
 });
 
-if($("[name=signedIn]").val() === "") {
-    $("#addToCartButton").attr('disabled', true);
-}
+$("#addToCartButton").on('click', function() {
+    if($("[name=signedIn]").val() === "") {
+        $("#carAddedSuccessfully").modal("show");
+    }else {
+        $("#addFeaturedCarToCart").submit();
+    }
+})

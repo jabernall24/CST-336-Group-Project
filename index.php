@@ -48,16 +48,41 @@
                 <strong>Transmission: </strong><span id="featuredCarTransmission"></span> <br/>
                 <strong>Color: </strong><span id="featuredCarColor"></span> <br/>
                 
-                <form action="addToCart.php" method="POST">
+                <form action="addToCart.php" method="POST" id="addFeaturedCarToCart">
                     <input type="hidden" name="sender" value="index.php"/>
                     <input type="hidden" name="carId"/>
-                    <button id='addToCartButton' class="btn btn-info btn-lg">
+                    <button type="button" id='addToCartButton' class="btn btn-info btn-lg">
                         <span class="fas fa-shopping-cart"></span> Add to cart
                     </button>
                 </form>
             </div>
         </main>
         
+        <div class="modal" id="carAddedSuccessfully" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>An account is required to continue, please login or sign up.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="login.php">
+                            <button class="btn btn-success">Login</button>
+                        </form>
+                        <form action="signup.php">
+                            <button class="btn btn-success">Sign up</button>
+                        </form>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Stay Here</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
