@@ -44,47 +44,47 @@
                     <h4 class="display-8">Car Information</h4>
 
                     <div class="form-group">
-                        <label for="make">Make</label>
+                        <label for="make">Make</label> <span id="makeError" class="addNew"></span>
                         <input type="text" class="form-control" id="make" >
                     </div>
 
                     <div class="form-group">
-                        <label for="model">Model</label>
+                        <label for="model">Model</label> <span id="modelError" class="addNew"></span>
                         <input type="text" class="form-control" id="model">
                     </div>
 
                     <div class="form-group">
-                        <label for="year">Year</label>
+                        <label for="year">Year</label> <span id="yearError" class="addNew"></span>
                         <input type="text" class="form-control" id="year">
                     </div>
 
                     <div class="form-group">
-                        <label for="color">Color</label>
+                        <label for="color">Color</label> <span id="colorError" class="addNew"></span>
                         <input type="text" class="form-control" id="color">
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type</label>
+                        <label for="type">Type</label> <span id="typeError" class="addNew"></span>
                         <input type="text" class="form-control" id="type">
                     </div>
 
 
                     <div class="form-group">
-                        <label for="odometer">Odometer</label>
+                        <label for="odometer">Odometer</label> <span id="odometerError" class="addNew"></span>
                         <input type="text" class="form-control" id="odometer">
                     </div>
       
                     <div class="form-group">
-                        <label for="price">Price</label>
+                        <label for="price">Price</label> <span id="priceError" class="addNew"></span>
                         <input type="text" class="form-control" id="price">
                     </div>
       
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Image</label> <span id="imageError" class="addNew"></span>
                         <input type="text" class="form-control" id="image">
                     </div>
 
-                    Transmission
+                    Transmission <span id="transmissionError" class="addNew"></span>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="transmission" id="transmission1" value="option1">
                         <label class="form-check-label" for="autoRadio">Automatic</label>
@@ -96,12 +96,35 @@
                     </div>
                     <br>
 
-                    <button  id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" id="submitButton" type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
    
         <div class="col"></div>
+        
+        <form action="admin.php">
+            <div class="modal" id="test" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Success</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="addedCarName"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success">Go to admin</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Stay Here</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
         
         <script type="text/javascript" src="js/addCars.js"></script>
     </body>
