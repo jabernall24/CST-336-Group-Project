@@ -3,15 +3,17 @@
     include '../dbConnection.php';
     $conn = getDatabaseConnection("ottermart");
 
-        $coupon = $_GET['coupon'];
-        
-        $sql = "SELECT * FROM coupons WHERE couponCode = $coupon";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+    $coupon = $_GET['coupon'];
+    $arr = array();
+    
+    $sql = "SELECT * FROM coupons WHERE couponCode = :coupon;";
+    $arr[":coupon"] = $coupon;
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->execute($arr);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    
 
-        echo json_encode($product);
+    echo json_encode($product);
 
 ?>
