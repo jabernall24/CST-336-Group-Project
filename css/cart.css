@@ -13,7 +13,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-    background-color: #f4f8ff;;
+    background-color: white;
 }
 
 .table-price {
@@ -37,4 +37,8 @@ tr:nth-child(even) {
 #tot{
     float:right;
     padding-right: 10px;
+}
+
+body {
+    background-color: #f4f8ff;
 }
