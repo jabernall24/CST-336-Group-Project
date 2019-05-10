@@ -32,9 +32,18 @@
     
         $stmt = $conn->prepare($sql);
         $stmt->execute($namedParameters);
+        
+        $sql = "SELECT * FROM users where username = :username;";
+        $arr = array();
+        $arr[":username"] = $username;
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr);
+        $record = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $_SESSION['valid'] = "true";
-        $_SESSION['user'] = $record['firstName'] . " " . $record['lastName'];
+        $_SESSION['user'] = $firstName . " " . $lastName;
+        $_SESSION['username'] = $record['userId'];
         header('location: index.php'); //redirecting to a new file
     }
 ?>
